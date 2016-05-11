@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Eyeshot" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetHttpBinding_IEyeshot_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsoma:OptimizedMimeSerialization xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://winsrv2012clas.cloudapp.net/V1/Eyeshot.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://winsrv2012clas.cloudapp.net/V1/Eyeshot.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://winsrv2012clas.cloudapp.net/V1/Eyeshot.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/EyeshotWcfService" />
+      <xsd:import schemaLocation="http://winsrv2012clas.cloudapp.net/V1/Eyeshot.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/devDept.Eyeshot" />
+      <xsd:import schemaLocation="http://winsrv2012clas.cloudapp.net/V1/Eyeshot.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Drawing" />
+      <xsd:import schemaLocation="http://winsrv2012clas.cloudapp.net/V1/Eyeshot.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/devDept.Eyeshot.Translators" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IEyeshot_Connect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Connect" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_Connect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_UpdateReadingSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateReadingSettings" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_UpdateReadingSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateReadingSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_UploadData_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadData" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_UploadData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_UploadDataDone_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadDataDone" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_UploadDataDone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadDataDoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_Disconnect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Disconnect" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_Disconnect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_DownloadData_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadData" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_DownloadData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_DownloadDataDone_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadDataDone" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_DownloadDataDone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadDataDoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_ConvertToImages_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToImages" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_ConvertToImages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToImagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_ConvertToDwg_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToDwg" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_ConvertToDwg_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToDwgResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_ConvertToDxf_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToDxf" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_ConvertToDxf_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToDxfResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_ConvertToObj_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToObj" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_ConvertToObj_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToObjResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_ConvertToIges_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToIges" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_ConvertToIges_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToIgesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_ConvertToStep_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToStep" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_ConvertToStep_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToStepResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_ConvertToStl_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToStl" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_ConvertToStl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToStlResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_GetCircles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCircles" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_GetCircles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCirclesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_GetSceneStructure_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSceneStructure" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_GetSceneStructure_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSceneStructureResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_OnProgressChanged_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnProgressChanged" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_OnOperationCompleted_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnOperationCompleted" />
+  </wsdl:message>
+  <wsdl:portType name="IEyeshot">
+    <wsdl:operation name="Connect">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/Connect" message="tns:IEyeshot_Connect_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/ConnectResponse" message="tns:IEyeshot_Connect_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateReadingSettings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/UpdateReadingSettings" message="tns:IEyeshot_UpdateReadingSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/UpdateReadingSettingsResponse" message="tns:IEyeshot_UpdateReadingSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/UploadData" message="tns:IEyeshot_UploadData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/UploadDataResponse" message="tns:IEyeshot_UploadData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadDataDone">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/UploadDataDone" message="tns:IEyeshot_UploadDataDone_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/UploadDataDoneResponse" message="tns:IEyeshot_UploadDataDone_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Disconnect">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/Disconnect" message="tns:IEyeshot_Disconnect_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/DisconnectResponse" message="tns:IEyeshot_Disconnect_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/DownloadData" message="tns:IEyeshot_DownloadData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/DownloadDataResponse" message="tns:IEyeshot_DownloadData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadDataDone">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/DownloadDataDone" message="tns:IEyeshot_DownloadDataDone_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/DownloadDataDoneResponse" message="tns:IEyeshot_DownloadDataDone_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToImages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/ConvertToImages" message="tns:IEyeshot_ConvertToImages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/ConvertToImagesResponse" message="tns:IEyeshot_ConvertToImages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToDwg">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/ConvertToDwg" message="tns:IEyeshot_ConvertToDwg_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/ConvertToDwgResponse" message="tns:IEyeshot_ConvertToDwg_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToDxf">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/ConvertToDxf" message="tns:IEyeshot_ConvertToDxf_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/ConvertToDxfResponse" message="tns:IEyeshot_ConvertToDxf_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToObj">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/ConvertToObj" message="tns:IEyeshot_ConvertToObj_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/ConvertToObjResponse" message="tns:IEyeshot_ConvertToObj_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToIges">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/ConvertToIges" message="tns:IEyeshot_ConvertToIges_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/ConvertToIgesResponse" message="tns:IEyeshot_ConvertToIges_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToStep">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/ConvertToStep" message="tns:IEyeshot_ConvertToStep_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/ConvertToStepResponse" message="tns:IEyeshot_ConvertToStep_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToStl">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/ConvertToStl" message="tns:IEyeshot_ConvertToStl_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/ConvertToStlResponse" message="tns:IEyeshot_ConvertToStl_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCircles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/GetCircles" message="tns:IEyeshot_GetCircles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/GetCirclesResponse" message="tns:IEyeshot_GetCircles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSceneStructure">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/GetSceneStructure" message="tns:IEyeshot_GetSceneStructure_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/GetSceneStructureResponse" message="tns:IEyeshot_GetSceneStructure_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnProgressChanged">
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/OnProgressChanged" message="tns:IEyeshot_OnProgressChanged_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnOperationCompleted">
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/OnOperationCompleted" message="tns:IEyeshot_OnOperationCompleted_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetHttpBinding_IEyeshot" type="tns:IEyeshot">
+    <wsp:PolicyReference URI="#NetHttpBinding_IEyeshot_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/websocket" />
+    <wsdl:operation name="Connect">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/Connect" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateReadingSettings">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/UpdateReadingSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadData">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/UploadData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDataDone">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/UploadDataDone" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Disconnect">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/Disconnect" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadData">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/DownloadData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadDataDone">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/DownloadDataDone" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToImages">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/ConvertToImages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToDwg">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/ConvertToDwg" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToDxf">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/ConvertToDxf" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToObj">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/ConvertToObj" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToIges">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/ConvertToIges" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToStep">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/ConvertToStep" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToStl">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/ConvertToStl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCircles">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/GetCircles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSceneStructure">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/GetSceneStructure" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnProgressChanged">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/OnProgressChanged" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnOperationCompleted">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/OnOperationCompleted" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Eyeshot">
+    <wsdl:port name="NetHttpBinding_IEyeshot" binding="tns:NetHttpBinding_IEyeshot">
+      <soap12:address location="ws://winsrv2012clas/V1/Eyeshot.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>ws://winsrv2012clas/V1/Eyeshot.svc</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

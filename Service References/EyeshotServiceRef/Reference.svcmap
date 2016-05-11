@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b6163624-cb7e-4f72-bbdf-cdae3d98e39e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:65275/Eyeshot.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Eyeshot.xsd" MetadataType="Schema" ID="b177f5a9-6298-4317-8a9b-66e90463222b" SourceId="1" SourceUrl="http://localhost:65275/Eyeshot.svc?xsd=xsd3" />
+    <MetadataFile FileName="Eyeshot1.xsd" MetadataType="Schema" ID="0eb52452-0fdb-45d0-b1b6-9f603ab672fa" SourceId="1" SourceUrl="http://localhost:65275/Eyeshot.svc?xsd=xsd5" />
+    <MetadataFile FileName="Eyeshot2.xsd" MetadataType="Schema" ID="7b8cb5c8-322f-43eb-8d68-d9b610077537" SourceId="1" SourceUrl="http://localhost:65275/Eyeshot.svc?xsd=xsd2" />
+    <MetadataFile FileName="Eyeshot3.xsd" MetadataType="Schema" ID="7caedb9c-fb47-4db1-8a90-f52aabe59040" SourceId="1" SourceUrl="http://localhost:65275/Eyeshot.svc?xsd=xsd4" />
+    <MetadataFile FileName="Eyeshot6.xsd" MetadataType="Schema" ID="7198334a-26fd-49b3-8535-b236bc65d78f" SourceId="1" SourceUrl="http://localhost:65275/Eyeshot.svc?xsd=xsd6" />
+    <MetadataFile FileName="Eyeshot.wsdl" MetadataType="Wsdl" ID="d60b3bbf-087a-4fa6-b218-dfbfc2ab55db" SourceId="1" SourceUrl="http://localhost:65275/Eyeshot.svc?wsdl" />
+    <MetadataFile FileName="Eyeshot4.xsd" MetadataType="Schema" ID="ce4c78f9-6699-4045-9bb5-95dcb812f5d6" SourceId="1" SourceUrl="http://localhost:65275/Eyeshot.svc?xsd=xsd0" />
+    <MetadataFile FileName="Eyeshot.disco" MetadataType="Disco" ID="d2c22d73-b1b6-4c5a-a8ca-3df95e9e24df" SourceId="1" SourceUrl="http://localhost:65275/Eyeshot.svc?disco" />
+    <MetadataFile FileName="Eyeshot5.xsd" MetadataType="Schema" ID="dd492f4a-210c-4b5c-bd1c-92865d2add7b" SourceId="1" SourceUrl="http://localhost:65275/Eyeshot.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

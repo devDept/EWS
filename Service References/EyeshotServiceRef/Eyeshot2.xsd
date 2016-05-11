@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/EyeshotWcfService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/EyeshotWcfService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:65275/Eyeshot.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/EyeshotWcfService.Tasks" />
+  <xs:complexType name="UploadRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Buffer" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileSize" type="xs:long" />
+      <xs:element minOccurs="0" name="Offset" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UploadRequest" nillable="true" type="tns:UploadRequest" />
+  <xs:complexType name="DownloadResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Buffer" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileSize" type="xs:long" />
+      <xs:element minOccurs="0" name="FileType" type="tns:FileType" />
+      <xs:element minOccurs="0" name="Log" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/EyeshotWcfService.Tasks" minOccurs="0" name="OperationType" type="q1:OperationsType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DownloadResponse" nillable="true" type="tns:DownloadResponse" />
+  <xs:simpleType name="FileType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Xml" />
+      <xs:enumeration value="Txt" />
+      <xs:enumeration value="Image" />
+      <xs:enumeration value="Dwg" />
+      <xs:enumeration value="Dxf" />
+      <xs:enumeration value="Iges" />
+      <xs:enumeration value="Obj" />
+      <xs:enumeration value="Mtl" />
+      <xs:enumeration value="Step" />
+      <xs:enumeration value="Stl" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="FileType" nillable="true" type="tns:FileType" />
+</xs:schema>

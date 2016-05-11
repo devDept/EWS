@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/devDept.Eyeshot" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/devDept.Eyeshot" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfviewType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="viewType" type="tns:viewType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfviewType" nillable="true" type="tns:ArrayOfviewType" />
+  <xs:simpleType name="viewType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Front" />
+      <xs:enumeration value="Right" />
+      <xs:enumeration value="Rear" />
+      <xs:enumeration value="Left" />
+      <xs:enumeration value="Top" />
+      <xs:enumeration value="Bottom" />
+      <xs:enumeration value="Isometric" />
+      <xs:enumeration value="Dimetric" />
+      <xs:enumeration value="Trimetric" />
+      <xs:enumeration value="vcFrontFaceBottom" />
+      <xs:enumeration value="vcFrontFaceRight" />
+      <xs:enumeration value="vcFrontFaceTop" />
+      <xs:enumeration value="vcFrontFaceLeft" />
+      <xs:enumeration value="vcRightFaceBottom" />
+      <xs:enumeration value="vcRightFaceRight" />
+      <xs:enumeration value="vcRightFaceTop" />
+      <xs:enumeration value="vcRightFaceLeft" />
+      <xs:enumeration value="vcBackFaceBottom" />
+      <xs:enumeration value="vcBackFaceRight" />
+      <xs:enumeration value="vcBackFaceTop" />
+      <xs:enumeration value="vcBackFaceLeft" />
+      <xs:enumeration value="vcLeftFaceBottom" />
+      <xs:enumeration value="vcLeftFaceRight" />
+      <xs:enumeration value="vcLeftFaceTop" />
+      <xs:enumeration value="vcLeftFaceLeft" />
+      <xs:enumeration value="vcBottomFaceBottom" />
+      <xs:enumeration value="vcBottomFaceRight" />
+      <xs:enumeration value="vcBottomFaceTop" />
+      <xs:enumeration value="vcBottomFaceLeft" />
+      <xs:enumeration value="vcTopFaceBottom" />
+      <xs:enumeration value="vcTopFaceRight" />
+      <xs:enumeration value="vcTopFaceTop" />
+      <xs:enumeration value="vcTopFaceLeft" />
+      <xs:enumeration value="vcFrontFaceBottomLeft" />
+      <xs:enumeration value="vcFrontFaceBottomRight" />
+      <xs:enumeration value="vcFrontFaceTopLeft" />
+      <xs:enumeration value="vcFrontFaceTopRight" />
+      <xs:enumeration value="vcBackFaceBottomLeft" />
+      <xs:enumeration value="vcBackFaceBottomRight" />
+      <xs:enumeration value="vcBackFaceTopLeft" />
+      <xs:enumeration value="vcBackFaceTopRight" />
+      <xs:enumeration value="Other" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="viewType" nillable="true" type="tns:viewType" />
+</xs:schema>
