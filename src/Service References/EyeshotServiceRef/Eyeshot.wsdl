@@ -10,13 +10,13 @@
   </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://localhost:65275/Eyeshot.svc?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://localhost:65275/Eyeshot.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:65275/Eyeshot.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/EyeshotWcfService" />
-      <xsd:import schemaLocation="http://localhost:65275/Eyeshot.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/EyeshotWcfService.Tasks" />
-      <xsd:import schemaLocation="http://localhost:65275/Eyeshot.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/devDept.Eyeshot" />
-      <xsd:import schemaLocation="http://localhost:65275/Eyeshot.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System.Drawing" />
-      <xsd:import schemaLocation="http://localhost:65275/Eyeshot.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/devDept.Eyeshot.Translators" />
+      <xsd:import schemaLocation="http://ews.devdept.com/V1/Eyeshot.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ews.devdept.com/V1/Eyeshot.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ews.devdept.com/V1/Eyeshot.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/EyeshotWcfService" />
+      <xsd:import schemaLocation="http://ews.devdept.com/V1/Eyeshot.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/EyeshotWcfService.Tasks" />
+      <xsd:import schemaLocation="http://ews.devdept.com/V1/Eyeshot.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/devDept.Eyeshot" />
+      <xsd:import schemaLocation="http://ews.devdept.com/V1/Eyeshot.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System.Drawing" />
+      <xsd:import schemaLocation="http://ews.devdept.com/V1/Eyeshot.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/devDept.Eyeshot.Translators" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IEyeshot_Connect_InputMessage">
@@ -115,11 +115,11 @@
   <wsdl:message name="IEyeshot_ConvertToStl_OutputMessage">
     <wsdl:part name="parameters" element="tns:ConvertToStlResponse" />
   </wsdl:message>
-  <wsdl:message name="IEyeshot_GetCircles_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetCircles" />
+  <wsdl:message name="IEyeshot_GetAllCircles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCircles" />
   </wsdl:message>
-  <wsdl:message name="IEyeshot_GetCircles_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetCirclesResponse" />
+  <wsdl:message name="IEyeshot_GetAllCircles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCirclesResponse" />
   </wsdl:message>
   <wsdl:message name="IEyeshot_GetSceneStructure_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSceneStructure" />
@@ -222,9 +222,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/ConvertToStl" message="tns:IEyeshot_ConvertToStl_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/ConvertToStlResponse" message="tns:IEyeshot_ConvertToStl_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetCircles">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/GetCircles" message="tns:IEyeshot_GetCircles_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/GetCirclesResponse" message="tns:IEyeshot_GetCircles_OutputMessage" />
+    <wsdl:operation name="GetAllCircles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/GetAllCircles" message="tns:IEyeshot_GetAllCircles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/GetAllCirclesResponse" message="tns:IEyeshot_GetAllCircles_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetSceneStructure">
       <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/GetSceneStructure" message="tns:IEyeshot_GetSceneStructure_InputMessage" />
@@ -400,8 +400,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetCircles">
-      <soap12:operation soapAction="http://tempuri.org/IEyeshot/GetCircles" style="document" />
+    <wsdl:operation name="GetAllCircles">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/GetAllCircles" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -469,9 +469,9 @@
   </wsdl:binding>
   <wsdl:service name="Eyeshot">
     <wsdl:port name="NetHttpBinding_IEyeshot" binding="tns:NetHttpBinding_IEyeshot">
-      <soap12:address location="ws://localhost:65275/Eyeshot.svc" />
+      <soap12:address location="ws://ews.devdept.com/V1/Eyeshot.svc" />
       <wsa10:EndpointReference>
-        <wsa10:Address>ws://localhost:65275/Eyeshot.svc</wsa10:Address>
+        <wsa10:Address>ws://ews.devdept.com/V1/Eyeshot.svc</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

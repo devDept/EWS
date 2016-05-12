@@ -294,7 +294,7 @@ namespace EyeshotWcfClientWinForms
         {
             _inquiryTypes = new Dictionary<string, OperationsType>();
             _inquiryTypes.Add("Get scene structure", OperationsType.GetSceneStructure);
-            _inquiryTypes.Add("Get circles", OperationsType.GetCircles);
+            _inquiryTypes.Add("Get all circles", OperationsType.GetAllCircles);
 
             foreach (var inquiryType in _inquiryTypes)            
                 cmbAddInquiries.Items.Add(inquiryType.Key);            
@@ -483,7 +483,7 @@ namespace EyeshotWcfClientWinForms
                     txtExtraFiles.Text = openFileDialog1.FileName;
                 btnUpload.Enabled = trackUpload.Enabled = true;
             }
-        }        
+        }
         #endregion
 
         #region Upload chunking data
@@ -494,7 +494,7 @@ namespace EyeshotWcfClientWinForms
         }
 
         private void StartUpload()
-        {
+        {            
             // Checks what file must be uploaded: main or extra files.
             string uploadFileName;
             if (_mainFileUploaded)
@@ -514,7 +514,7 @@ namespace EyeshotWcfClientWinForms
 
             ResetLog();
             _offset = 0;
-            _uploadProgressCounter = 0;            
+            _uploadProgressCounter = 0;
 
             _uploadFileInfo = new FileInfo(uploadFileName);
             UploadText = String.Format("Uploading file {0}... ", System.IO.Path.GetFileName(uploadFileName));
@@ -743,7 +743,7 @@ namespace EyeshotWcfClientWinForms
             TaskListCompleted(false);
 
             viewType viewType = (viewType)cmbAddImage.SelectedItem;
-            _client.ConvertToImages(new[] { viewType }, (int)txtWidth.Value, (int)txtHeight.Value, btnTopColor.BackColor, btnBottomColor.BackColor, chkCsi.Checked, chkOs.Checked);
+            _client.ConvertToImages(new[] { viewType }, (int)numWidthImages.Value, (int)numHeightImages.Value, btnTopColor.BackColor, btnBottomColor.BackColor, chkCsi.Checked, chkOs.Checked);
             lstBoxTasks.Items.Add(String.Format("{0} image", viewType));
         }
 
@@ -754,35 +754,43 @@ namespace EyeshotWcfClientWinForms
 
             TaskListCompleted(false);
 
-            string item = (string)cmbAddConversion.SelectedItem;
-            var selected = _conversionTypes[item];
+            string taskItem = (string)cmbAddConversion.SelectedItem;
+            var selected = _conversionTypes[taskItem];
             OperationsType operationsType = selected.Item1;
 
             switch (operationsType)
             {
                 case OperationsType.ConvertToDwg:
                     var dwgVersion = (WriteAutodeskversionType)selected.Item2;
-                    _client.ConvertToDwg(new[] { dwgVersion }, chkAciColors.Checked);
+                    var dwgTol = (double)numTolAutodesk.Value;
+                    taskItem = String.Format("{0} (Tol. {1})", taskItem, dwgTol);
+                    _client.ConvertToDwg(new[] { dwgVersion }, chkAciColors.Checked, dwgTol);
                     break;
                 case OperationsType.ConvertToDxf:
                     var dxfVersion = (WriteAutodeskversionType)selected.Item2;
-                    _client.ConvertToDxf(new[] { dxfVersion }, chkAciColors.Checked);
+                    var dxfTol = (double)numTolAutodesk.Value;
+                    taskItem = String.Format("{0} (Tol. {1})", taskItem, dxfTol);
+                    _client.ConvertToDxf(new[] { dxfVersion }, chkAciColors.Checked, dxfTol);
                     break;
                 case OperationsType.ConvertToIges:
                     _client.ConvertToIges();
                     break;
                 case OperationsType.ConvertToObj:
-                    _client.ConvertToObj();
+                    var objTol = (double)numTolObj.Value;
+                    taskItem = String.Format("{0} (Tol. {1})", taskItem, objTol);
+                    _client.ConvertToObj(objTol);
                     break;
                 case OperationsType.ConvertToStep:
                     _client.ConvertToStep();
                     break;
                 case OperationsType.ConvertToStl:
-                    _client.ConvertToStl();
+                    var stlTol = (double)numTolStl.Value;
+                    taskItem = String.Format("{0} (Tol. {1})", taskItem, stlTol);
+                    _client.ConvertToStl(stlTol);
                     break;
             }
 
-            lstBoxTasks.Items.Add(item);
+            lstBoxTasks.Items.Add(taskItem);
         }
         #endregion
 
@@ -800,8 +808,8 @@ namespace EyeshotWcfClientWinForms
             var selected = _inquiryTypes[item];
             switch (selected)
             {                
-                case OperationsType.GetCircles:
-                    _client.GetCircles();
+                case OperationsType.GetAllCircles:
+                    _client.GetAllCircles();
                     break;
                 case OperationsType.GetSceneStructure:
                     _client.GetSceneStructure();

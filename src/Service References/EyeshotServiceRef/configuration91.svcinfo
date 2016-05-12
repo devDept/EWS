@@ -145,10 +145,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="NetHttpBinding_IEyeshot" contract="EyeshotServiceRef.IEyeshot" bindingType="netHttpBinding" address="ws://localhost:65275/Eyeshot.svc" bindingConfiguration="NetHttpBinding_IEyeshot">
+    <endpoint name="NetHttpBinding_IEyeshot" contract="EyeshotServiceRef.IEyeshot" bindingType="netHttpBinding" address="ws://ews.devdept.com/V1/Eyeshot.svc" bindingConfiguration="NetHttpBinding_IEyeshot">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>ws://localhost:65275/Eyeshot.svc</serializedValue>
+          <serializedValue>ws://ews.devdept.com/V1/Eyeshot.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

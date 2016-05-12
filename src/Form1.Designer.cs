@@ -28,12 +28,12 @@
             this.btnConnect = new System.Windows.Forms.Button();
             this.treePicView = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.lblConnectionId = new System.Windows.Forms.Label();
+            this.lblConnectionId = new System.Windows.Forms.Label();            
             this.chkDeleteFiles = new System.Windows.Forms.CheckBox();
-            this.txtWidth = new System.Windows.Forms.NumericUpDown();
+            this.numWidthImages = new System.Windows.Forms.NumericUpDown();
             this.lblWidth = new System.Windows.Forms.Label();
             this.lblHeight = new System.Windows.Forms.Label();
-            this.txtHeight = new System.Windows.Forms.NumericUpDown();
+            this.numHeightImages = new System.Windows.Forms.NumericUpDown();
             this.grpBuffer = new System.Windows.Forms.GroupBox();
             this.trackDownload = new System.Windows.Forms.TrackBar();
             this.lblSpeed = new System.Windows.Forms.Label();
@@ -55,7 +55,15 @@
             this.btnTopColor = new System.Windows.Forms.Button();
             this.grpImagesSize = new System.Windows.Forms.GroupBox();
             this.pgAutodesk = new System.Windows.Forms.TabPage();
+            this.lblRegenAutodesk = new System.Windows.Forms.Label();
+            this.numTolAutodesk = new System.Windows.Forms.NumericUpDown();
             this.chkAciColors = new System.Windows.Forms.CheckBox();
+            this.pgObj = new System.Windows.Forms.TabPage();
+            this.lblRegenObj = new System.Windows.Forms.Label();
+            this.numTolObj = new System.Windows.Forms.NumericUpDown();
+            this.pgStl = new System.Windows.Forms.TabPage();
+            this.lblRegenStl = new System.Windows.Forms.Label();
+            this.numTolStl = new System.Windows.Forms.NumericUpDown();
             this.pgGeneral = new System.Windows.Forms.TabPage();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.grpInput = new System.Windows.Forms.GroupBox();
@@ -90,8 +98,8 @@
             this.lstBoxTasks = new System.Windows.Forms.ListBox();
             this.linkWorkingMode = new System.Windows.Forms.LinkLabel();
             this.progressBarUploads = new EyeshotWcfClientWinForms.ProgressBarWithText();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWidth)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numWidthImages)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numHeightImages)).BeginInit();
             this.grpBuffer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackDownload)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackUpload)).BeginInit();
@@ -100,6 +108,11 @@
             this.grpImagesColors.SuspendLayout();
             this.grpImagesSize.SuspendLayout();
             this.pgAutodesk.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numTolAutodesk)).BeginInit();
+            this.pgObj.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numTolObj)).BeginInit();
+            this.pgStl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numTolStl)).BeginInit();
             this.pgGeneral.SuspendLayout();
             this.grpInput.SuspendLayout();
             this.grpReadingSettings.SuspendLayout();
@@ -218,7 +231,7 @@
             this.lblConnectionId.Name = "lblConnectionId";
             this.lblConnectionId.Size = new System.Drawing.Size(150, 17);
             this.lblConnectionId.TabIndex = 17;
-            this.lblConnectionId.Text = "Id:";
+            this.lblConnectionId.Text = "Id:";            
             // 
             // chkDeleteFiles
             // 
@@ -232,23 +245,23 @@
             this.chkDeleteFiles.Text = "Delete downloaded files after disconnect";
             this.chkDeleteFiles.UseVisualStyleBackColor = true;
             // 
-            // txtWidth
+            // numWidthImages
             // 
-            this.txtWidth.Location = new System.Drawing.Point(53, 19);
-            this.txtWidth.Maximum = new decimal(new int[] {
+            this.numWidthImages.Location = new System.Drawing.Point(53, 19);
+            this.numWidthImages.Maximum = new decimal(new int[] {
             2048,
             0,
             0,
             0});
-            this.txtWidth.Minimum = new decimal(new int[] {
+            this.numWidthImages.Minimum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.txtWidth.Name = "txtWidth";
-            this.txtWidth.Size = new System.Drawing.Size(55, 20);
-            this.txtWidth.TabIndex = 24;
-            this.txtWidth.Value = new decimal(new int[] {
+            this.numWidthImages.Name = "numWidthImages";
+            this.numWidthImages.Size = new System.Drawing.Size(55, 20);
+            this.numWidthImages.TabIndex = 24;
+            this.numWidthImages.Value = new decimal(new int[] {
             512,
             0,
             0,
@@ -272,23 +285,23 @@
             this.lblHeight.TabIndex = 27;
             this.lblHeight.Text = "Height:";
             // 
-            // txtHeight
+            // numHeightImages
             // 
-            this.txtHeight.Location = new System.Drawing.Point(53, 47);
-            this.txtHeight.Maximum = new decimal(new int[] {
+            this.numHeightImages.Location = new System.Drawing.Point(53, 47);
+            this.numHeightImages.Maximum = new decimal(new int[] {
             2048,
             0,
             0,
             0});
-            this.txtHeight.Minimum = new decimal(new int[] {
+            this.numHeightImages.Minimum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.txtHeight.Name = "txtHeight";
-            this.txtHeight.Size = new System.Drawing.Size(55, 20);
-            this.txtHeight.TabIndex = 26;
-            this.txtHeight.Value = new decimal(new int[] {
+            this.numHeightImages.Name = "numHeightImages";
+            this.numHeightImages.Size = new System.Drawing.Size(55, 20);
+            this.numHeightImages.TabIndex = 26;
+            this.numHeightImages.Value = new decimal(new int[] {
             512,
             0,
             0,
@@ -392,6 +405,8 @@
             // 
             this.tabControlSettings.Controls.Add(this.pgImages);
             this.tabControlSettings.Controls.Add(this.pgAutodesk);
+            this.tabControlSettings.Controls.Add(this.pgObj);
+            this.tabControlSettings.Controls.Add(this.pgStl);
             this.tabControlSettings.Controls.Add(this.pgGeneral);
             this.tabControlSettings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlSettings.Location = new System.Drawing.Point(3, 16);
@@ -489,9 +504,9 @@
             // 
             // grpImagesSize
             // 
-            this.grpImagesSize.Controls.Add(this.txtWidth);
+            this.grpImagesSize.Controls.Add(this.numWidthImages);
             this.grpImagesSize.Controls.Add(this.lblWidth);
-            this.grpImagesSize.Controls.Add(this.txtHeight);
+            this.grpImagesSize.Controls.Add(this.numHeightImages);
             this.grpImagesSize.Controls.Add(this.lblHeight);
             this.grpImagesSize.Location = new System.Drawing.Point(6, 6);
             this.grpImagesSize.Name = "grpImagesSize";
@@ -502,6 +517,8 @@
             // 
             // pgAutodesk
             // 
+            this.pgAutodesk.Controls.Add(this.lblRegenAutodesk);
+            this.pgAutodesk.Controls.Add(this.numTolAutodesk);
             this.pgAutodesk.Controls.Add(this.chkAciColors);
             this.pgAutodesk.Location = new System.Drawing.Point(4, 22);
             this.pgAutodesk.Name = "pgAutodesk";
@@ -510,6 +527,33 @@
             this.pgAutodesk.TabIndex = 2;
             this.pgAutodesk.Text = "DWG/DXF";
             this.pgAutodesk.UseVisualStyleBackColor = true;
+            // 
+            // lblRegenAutodesk
+            // 
+            this.lblRegenAutodesk.AutoSize = true;
+            this.lblRegenAutodesk.Location = new System.Drawing.Point(7, 63);
+            this.lblRegenAutodesk.Name = "lblRegenAutodesk";
+            this.lblRegenAutodesk.Size = new System.Drawing.Size(86, 13);
+            this.lblRegenAutodesk.TabIndex = 28;
+            this.lblRegenAutodesk.Text = "Regen tolerance";
+            // 
+            // numTolAutodesk
+            // 
+            this.numTolAutodesk.DecimalPlaces = 4;
+            this.numTolAutodesk.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numTolAutodesk.Location = new System.Drawing.Point(99, 61);
+            this.numTolAutodesk.Name = "numTolAutodesk";
+            this.numTolAutodesk.Size = new System.Drawing.Size(90, 20);
+            this.numTolAutodesk.TabIndex = 27;
+            this.numTolAutodesk.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             // 
             // chkAciColors
             // 
@@ -522,6 +566,84 @@
             this.chkAciColors.TabIndex = 26;
             this.chkAciColors.Text = "Save the colors as Aci colors if possible.\r\n(Autocad color index)";
             this.chkAciColors.UseVisualStyleBackColor = true;
+            // 
+            // pgObj
+            // 
+            this.pgObj.Controls.Add(this.lblRegenObj);
+            this.pgObj.Controls.Add(this.numTolObj);
+            this.pgObj.Location = new System.Drawing.Point(4, 22);
+            this.pgObj.Name = "pgObj";
+            this.pgObj.Padding = new System.Windows.Forms.Padding(3);
+            this.pgObj.Size = new System.Drawing.Size(347, 223);
+            this.pgObj.TabIndex = 3;
+            this.pgObj.Text = "OBJ";
+            this.pgObj.UseVisualStyleBackColor = true;
+            // 
+            // lblRegenObj
+            // 
+            this.lblRegenObj.AutoSize = true;
+            this.lblRegenObj.Location = new System.Drawing.Point(7, 22);
+            this.lblRegenObj.Name = "lblRegenObj";
+            this.lblRegenObj.Size = new System.Drawing.Size(86, 13);
+            this.lblRegenObj.TabIndex = 28;
+            this.lblRegenObj.Text = "Regen tolerance";
+            // 
+            // numTolObj
+            // 
+            this.numTolObj.DecimalPlaces = 4;
+            this.numTolObj.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numTolObj.Location = new System.Drawing.Point(99, 20);
+            this.numTolObj.Name = "numTolObj";
+            this.numTolObj.Size = new System.Drawing.Size(90, 20);
+            this.numTolObj.TabIndex = 27;
+            this.numTolObj.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            // 
+            // pgStl
+            // 
+            this.pgStl.Controls.Add(this.lblRegenStl);
+            this.pgStl.Controls.Add(this.numTolStl);
+            this.pgStl.Location = new System.Drawing.Point(4, 22);
+            this.pgStl.Name = "pgStl";
+            this.pgStl.Padding = new System.Windows.Forms.Padding(3);
+            this.pgStl.Size = new System.Drawing.Size(347, 223);
+            this.pgStl.TabIndex = 4;
+            this.pgStl.Text = "STL";
+            this.pgStl.UseVisualStyleBackColor = true;
+            // 
+            // lblRegenStl
+            // 
+            this.lblRegenStl.AutoSize = true;
+            this.lblRegenStl.Location = new System.Drawing.Point(7, 22);
+            this.lblRegenStl.Name = "lblRegenStl";
+            this.lblRegenStl.Size = new System.Drawing.Size(86, 13);
+            this.lblRegenStl.TabIndex = 28;
+            this.lblRegenStl.Text = "Regen tolerance";
+            // 
+            // numTolStl
+            // 
+            this.numTolStl.DecimalPlaces = 4;
+            this.numTolStl.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numTolStl.Location = new System.Drawing.Point(99, 20);
+            this.numTolStl.Name = "numTolStl";
+            this.numTolStl.Size = new System.Drawing.Size(90, 20);
+            this.numTolStl.TabIndex = 27;
+            this.numTolStl.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             // 
             // pgGeneral
             // 
@@ -538,7 +660,7 @@
             // grpInput
             // 
             this.grpInput.Controls.Add(this.btnInputFile);
-            this.grpInput.Controls.Add(this.txtInput);
+            this.grpInput.Controls.Add(this.txtInput);            
             this.grpInput.Controls.Add(this.txtExtraFiles);
             this.grpInput.Controls.Add(this.btnExtraFiles);
             this.grpInput.Location = new System.Drawing.Point(13, 45);
@@ -902,8 +1024,8 @@
             this.Controls.Add(this.btnConnect);
             this.Name = "Form1";
             this.Text = "EWS Client";
-            ((System.ComponentModel.ISupportInitialize)(this.txtWidth)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numWidthImages)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numHeightImages)).EndInit();
             this.grpBuffer.ResumeLayout(false);
             this.grpBuffer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackDownload)).EndInit();
@@ -917,6 +1039,13 @@
             this.grpImagesSize.PerformLayout();
             this.pgAutodesk.ResumeLayout(false);
             this.pgAutodesk.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numTolAutodesk)).EndInit();
+            this.pgObj.ResumeLayout(false);
+            this.pgObj.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numTolObj)).EndInit();
+            this.pgStl.ResumeLayout(false);
+            this.pgStl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numTolStl)).EndInit();
             this.pgGeneral.ResumeLayout(false);
             this.pgGeneral.PerformLayout();
             this.grpInput.ResumeLayout(false);
@@ -953,12 +1082,12 @@
         private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.TreeView treePicView;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.Label lblConnectionId;
+        private System.Windows.Forms.Label lblConnectionId;        
         private System.Windows.Forms.CheckBox chkDeleteFiles;
-        private System.Windows.Forms.NumericUpDown txtWidth;
+        private System.Windows.Forms.NumericUpDown numWidthImages;
         private System.Windows.Forms.Label lblWidth;
         private System.Windows.Forms.Label lblHeight;
-        private System.Windows.Forms.NumericUpDown txtHeight;
+        private System.Windows.Forms.NumericUpDown numHeightImages;
         private System.Windows.Forms.GroupBox grpBuffer;
         private System.Windows.Forms.Label lblDownload;
         private System.Windows.Forms.Label lblUpload;
@@ -1014,6 +1143,14 @@
         private System.Windows.Forms.ComboBox cmbAddConversion;
         private System.Windows.Forms.GroupBox grpAddTransformation;
         private System.Windows.Forms.ComboBox cmbAddTransformation;
+        private System.Windows.Forms.Label lblRegenAutodesk;
+        private System.Windows.Forms.NumericUpDown numTolAutodesk;
+        private System.Windows.Forms.TabPage pgObj;
+        private System.Windows.Forms.Label lblRegenObj;
+        private System.Windows.Forms.NumericUpDown numTolObj;
+        private System.Windows.Forms.TabPage pgStl;
+        private System.Windows.Forms.Label lblRegenStl;
+        private System.Windows.Forms.NumericUpDown numTolStl;
     }
 }
 
