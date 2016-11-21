@@ -79,6 +79,18 @@
   <wsdl:message name="IEyeshot_ConvertToImages_OutputMessage">
     <wsdl:part name="parameters" element="tns:ConvertToImagesResponse" />
   </wsdl:message>
+  <wsdl:message name="IEyeshot_ConvertToXml_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToXml" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_ConvertToXml_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToXmlResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_ConvertToWebGL_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToWebGL" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_ConvertToWebGL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToWebGLResponse" />
+  </wsdl:message>
   <wsdl:message name="IEyeshot_ConvertToDwg_InputMessage">
     <wsdl:part name="parameters" element="tns:ConvertToDwg" />
   </wsdl:message>
@@ -115,17 +127,17 @@
   <wsdl:message name="IEyeshot_ConvertToStl_OutputMessage">
     <wsdl:part name="parameters" element="tns:ConvertToStlResponse" />
   </wsdl:message>
-  <wsdl:message name="IEyeshot_GetAllCircles_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllCircles" />
+  <wsdl:message name="IEyeshot_GetArea_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetArea" />
   </wsdl:message>
-  <wsdl:message name="IEyeshot_GetAllCircles_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllCirclesResponse" />
+  <wsdl:message name="IEyeshot_GetArea_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAreaResponse" />
   </wsdl:message>
-  <wsdl:message name="IEyeshot_GetSceneStructure_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetSceneStructure" />
+  <wsdl:message name="IEyeshot_GetVolume_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVolume" />
   </wsdl:message>
-  <wsdl:message name="IEyeshot_GetSceneStructure_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetSceneStructureResponse" />
+  <wsdl:message name="IEyeshot_GetVolume_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVolumeResponse" />
   </wsdl:message>
   <wsdl:message name="IEyeshot_GetFullOperationsLog_InputMessage">
     <wsdl:part name="parameters" element="tns:GetFullOperationsLog" />
@@ -156,6 +168,9 @@
   </wsdl:message>
   <wsdl:message name="IEyeshot_OnOperationCompleted_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:OnOperationCompleted" />
+  </wsdl:message>
+  <wsdl:message name="IEyeshot_OnTransformationCompleted_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnTransformationCompleted" />
   </wsdl:message>
   <wsdl:portType name="IEyeshot">
     <wsdl:operation name="Connect">
@@ -198,6 +213,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/ConvertToImages" message="tns:IEyeshot_ConvertToImages_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/ConvertToImagesResponse" message="tns:IEyeshot_ConvertToImages_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ConvertToXml">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/ConvertToXml" message="tns:IEyeshot_ConvertToXml_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/ConvertToXmlResponse" message="tns:IEyeshot_ConvertToXml_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToWebGL">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/ConvertToWebGL" message="tns:IEyeshot_ConvertToWebGL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/ConvertToWebGLResponse" message="tns:IEyeshot_ConvertToWebGL_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ConvertToDwg">
       <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/ConvertToDwg" message="tns:IEyeshot_ConvertToDwg_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/ConvertToDwgResponse" message="tns:IEyeshot_ConvertToDwg_OutputMessage" />
@@ -222,13 +245,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/ConvertToStl" message="tns:IEyeshot_ConvertToStl_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/ConvertToStlResponse" message="tns:IEyeshot_ConvertToStl_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetAllCircles">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/GetAllCircles" message="tns:IEyeshot_GetAllCircles_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/GetAllCirclesResponse" message="tns:IEyeshot_GetAllCircles_OutputMessage" />
+    <wsdl:operation name="GetArea">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/GetArea" message="tns:IEyeshot_GetArea_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/GetAreaResponse" message="tns:IEyeshot_GetArea_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetSceneStructure">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/GetSceneStructure" message="tns:IEyeshot_GetSceneStructure_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/GetSceneStructureResponse" message="tns:IEyeshot_GetSceneStructure_OutputMessage" />
+    <wsdl:operation name="GetVolume">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/GetVolume" message="tns:IEyeshot_GetVolume_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/GetVolumeResponse" message="tns:IEyeshot_GetVolume_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetFullOperationsLog">
       <wsdl:input wsaw:Action="http://tempuri.org/IEyeshot/GetFullOperationsLog" message="tns:IEyeshot_GetFullOperationsLog_InputMessage" />
@@ -251,6 +274,9 @@
     </wsdl:operation>
     <wsdl:operation name="OnOperationCompleted">
       <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/OnOperationCompleted" message="tns:IEyeshot_OnOperationCompleted_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnTransformationCompleted">
+      <wsdl:output wsaw:Action="http://tempuri.org/IEyeshot/OnTransformationCompleted" message="tns:IEyeshot_OnTransformationCompleted_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetHttpBinding_IEyeshot" type="tns:IEyeshot">
@@ -346,6 +372,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ConvertToXml">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/ConvertToXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToWebGL">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/ConvertToWebGL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ConvertToDwg">
       <soap12:operation soapAction="http://tempuri.org/IEyeshot/ConvertToDwg" style="document" />
       <wsdl:input>
@@ -400,8 +444,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetAllCircles">
-      <soap12:operation soapAction="http://tempuri.org/IEyeshot/GetAllCircles" style="document" />
+    <wsdl:operation name="GetArea">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/GetArea" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -409,8 +453,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetSceneStructure">
-      <soap12:operation soapAction="http://tempuri.org/IEyeshot/GetSceneStructure" style="document" />
+    <wsdl:operation name="GetVolume">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/GetVolume" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -462,6 +506,12 @@
     </wsdl:operation>
     <wsdl:operation name="OnOperationCompleted">
       <soap12:operation soapAction="http://tempuri.org/IEyeshot/OnOperationCompleted" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnTransformationCompleted">
+      <soap12:operation soapAction="http://tempuri.org/IEyeshot/OnTransformationCompleted" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

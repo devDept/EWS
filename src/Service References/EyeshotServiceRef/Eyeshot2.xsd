@@ -27,6 +27,7 @@
       <xs:enumeration value="Xml" />
       <xs:enumeration value="Txt" />
       <xs:enumeration value="Image" />
+      <xs:enumeration value="Html" />
       <xs:enumeration value="Dwg" />
       <xs:enumeration value="Dxf" />
       <xs:enumeration value="Iges" />

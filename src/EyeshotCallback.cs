@@ -20,15 +20,16 @@ namespace EyeshotWcfClientWinForms
     {
         private readonly SynchronizationContext _syncContext = AsyncOperationManager.SynchronizationContext;
         public event EventHandler<OnProgressChangedEventArgs> ServiceOnProgressChangedEvent;
-        public event EventHandler<OnOperationCompletedEventArgs> ServiceOnOperationCompletedEvent;        
+        public event EventHandler<OnOperationCompletedEventArgs> ServiceOnOperationCompletedEvent;
+        public event EventHandler<OnTransformationCompletedEventArgs> ServiceOnTransformationCompletedEvent;
 
         #region OnOperationCompleted                
-        public void OnOperationCompleted(OperationsType operationType, int resultsCount, string log)
+        public void OnOperationCompleted(OperationsType operationType, int resultsCount, string log, bool skipped)
         {
-            _syncContext.Post(new SendOrPostCallback(OnOperationCompletedEvent), new OnOperationCompletedEventArgs(operationType, resultsCount, log));
+            _syncContext.Post(new SendOrPostCallback(OnOperationCompletedEvent), new OnOperationCompletedEventArgs(operationType, resultsCount, log, skipped));
         }
 
-        public IAsyncResult BeginOnOperationCompleted(OperationsType operationType, int resultsCount, string log, AsyncCallback callback,
+        public IAsyncResult BeginOnOperationCompleted(OperationsType operationType, int resultsCount, string log, bool skipped, AsyncCallback callback,
             object asyncState)
         {
             throw new NotImplementedException();
@@ -43,6 +44,35 @@ namespace EyeshotWcfClientWinForms
         {
             EventHandler<OnOperationCompletedEventArgs> handler = ServiceOnOperationCompletedEvent;
             OnOperationCompletedEventArgs e = state as OnOperationCompletedEventArgs;
+
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        #endregion        
+
+        #region OnTransformationCompleted                
+        public void OnTransformationCompleted(TransformationsType transformationType, string log, bool skipped)
+        {
+            _syncContext.Post(new SendOrPostCallback(OnTransformationCompletedEvent), new OnTransformationCompletedEventArgs(transformationType, log, skipped));
+        }
+
+        public IAsyncResult BeginOnTransformationCompleted(TransformationsType transformationType, string log, bool skipped, AsyncCallback callback, object asyncState)
+        {
+            throw new NotImplementedException();
+        }        
+
+        public void EndOnTransformationCompleted(IAsyncResult result)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OnTransformationCompletedEvent(object state)
+        {
+            EventHandler<OnTransformationCompletedEventArgs> handler = ServiceOnTransformationCompletedEvent;
+            OnTransformationCompletedEventArgs e = state as OnTransformationCompletedEventArgs;
 
             if (handler != null)
             {
@@ -77,7 +107,7 @@ namespace EyeshotWcfClientWinForms
             {
                 handler(this, e);
             }
-        }
+        }        
         #endregion
     }
 
@@ -115,7 +145,34 @@ namespace EyeshotWcfClientWinForms
         }
     }
 
-    internal class OnOperationCompletedEventArgs : EventArgs
+    internal class OnTaskCompletedEventArgs : EventArgs
+    {
+        private string _log;
+        /// <summary>
+        /// Gets the log of the operation.
+        /// </summary>
+        public string Log
+        {
+            get { return _log; }
+        }
+
+        private bool _skipped;
+        /// <summary>
+        /// True when the operation was skipped because of errors occurred (see <see cref="Log"/> for details).
+        /// </summary>
+        public bool Skipped
+        {
+            get { return _skipped; }
+        }
+
+        public OnTaskCompletedEventArgs(string log, bool skipped)
+        {        
+            _log = log;
+            _skipped = skipped;
+        }
+    }
+
+    internal class OnOperationCompletedEventArgs : OnTaskCompletedEventArgs
     {
         private OperationsType _operationType;
         /// <summary>
@@ -134,21 +191,29 @@ namespace EyeshotWcfClientWinForms
         {
             get { return _resultsCount; }            
         }
-                
-        private string _log;
-        /// <summary>
-        /// Gets the log of the operation.
-        /// </summary>
-        public string Log
-        {
-            get { return _log; }            
-        }        
+                        
 
-        public OnOperationCompletedEventArgs(OperationsType operationType, int count, string log)
+        public OnOperationCompletedEventArgs(OperationsType operationType, int count, string log, bool skipped) : base (log, skipped)
         {
             _operationType = operationType;
-            _resultsCount = count;
-            _log = log;
+            _resultsCount = count;           
         }
-    }    
+    }
+
+    internal class OnTransformationCompletedEventArgs : OnTaskCompletedEventArgs
+    {
+        private TransformationsType _transformationType;
+        /// <summary>
+        /// Gets the Transformation type.
+        /// </summary>
+        public TransformationsType TransformationType
+        {
+            get { return _transformationType; }
+        }       
+
+        public OnTransformationCompletedEventArgs(TransformationsType transformationType, string log, bool skipped) : base(log, skipped)
+        {
+            _transformationType = transformationType;            
+        }
+    }
 }

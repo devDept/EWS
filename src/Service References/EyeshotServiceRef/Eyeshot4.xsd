@@ -144,10 +144,37 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ConvertToXml">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConvertToXmlResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ConvertToXmlResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConvertToWebGL">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="tolerance" type="xs:double" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="htmlBodyColor" nillable="true" type="q6:Color" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConvertToWebGLResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ConvertToWebGLResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="ConvertToDwg">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/devDept.Eyeshot.Translators" minOccurs="0" name="versionTypes" nillable="true" type="q6:ArrayOfWriteAutodesk.versionType" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/devDept.Eyeshot.Translators" minOccurs="0" name="versionTypes" nillable="true" type="q7:ArrayOfWriteAutodesk.versionType" />
         <xs:element minOccurs="0" name="aciColors" type="xs:boolean" />
         <xs:element minOccurs="0" name="tolerance" type="xs:double" />
       </xs:sequence>
@@ -163,7 +190,7 @@
   <xs:element name="ConvertToDxf">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/devDept.Eyeshot.Translators" minOccurs="0" name="versionTypes" nillable="true" type="q7:ArrayOfWriteAutodesk.versionType" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/devDept.Eyeshot.Translators" minOccurs="0" name="versionTypes" nillable="true" type="q8:ArrayOfWriteAutodesk.versionType" />
         <xs:element minOccurs="0" name="aciColors" type="xs:boolean" />
         <xs:element minOccurs="0" name="tolerance" type="xs:double" />
       </xs:sequence>
@@ -228,27 +255,31 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetAllCircles">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetAllCirclesResponse">
+  <xs:element name="GetArea">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GetAllCirclesResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="tolerance" type="xs:double" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetSceneStructure">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetSceneStructureResponse">
+  <xs:element name="GetAreaResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GetSceneStructureResult" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="GetAreaResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVolume">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="tolerance" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVolumeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetVolumeResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -327,9 +358,19 @@
   <xs:element name="OnOperationCompleted">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/EyeshotWcfService.Tasks" minOccurs="0" name="operationType" type="q8:OperationsType" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/EyeshotWcfService.Tasks" minOccurs="0" name="operationType" type="q9:OperationsType" />
         <xs:element minOccurs="0" name="resultsCount" type="xs:int" />
         <xs:element minOccurs="0" name="log" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="skipped" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OnTransformationCompleted">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/EyeshotWcfService.Tasks" minOccurs="0" name="transformationType" type="q10:TransformationsType" />
+        <xs:element minOccurs="0" name="log" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="skipped" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

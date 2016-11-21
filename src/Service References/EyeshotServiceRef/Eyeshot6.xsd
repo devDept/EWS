@@ -8,21 +8,14 @@
   <xs:element name="ArrayOfWriteAutodesk.versionType" nillable="true" type="tns:ArrayOfWriteAutodesk.versionType" />
   <xs:simpleType name="WriteAutodesk.versionType">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Newest" />
-      <xs:enumeration value="Current" />
-      <xs:enumeration value="Release27" />
-      <xs:enumeration value="Acad2013" />
-      <xs:enumeration value="Release24" />
-      <xs:enumeration value="Acad2010" />
-      <xs:enumeration value="Release21" />
-      <xs:enumeration value="Acad2007" />
-      <xs:enumeration value="Release18" />
-      <xs:enumeration value="Acad2004" />
-      <xs:enumeration value="Release15" />
-      <xs:enumeration value="Acad2000" />
-      <xs:enumeration value="Release14" />
-      <xs:enumeration value="Release13" />
       <xs:enumeration value="Release12" />
+      <xs:enumeration value="Release13" />
+      <xs:enumeration value="Release14" />
+      <xs:enumeration value="Acad2000" />
+      <xs:enumeration value="Acad2004" />
+      <xs:enumeration value="Acad2007" />
+      <xs:enumeration value="Acad2010" />
+      <xs:enumeration value="Acad2013" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="WriteAutodesk.versionType" nillable="true" type="tns:WriteAutodesk.versionType" />

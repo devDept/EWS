@@ -248,25 +248,28 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
         Image = 3,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Dwg = 4,
+        Html = 4,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Dxf = 5,
+        Dwg = 5,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Iges = 6,
+        Dxf = 6,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Obj = 7,
+        Iges = 7,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Mtl = 8,
+        Obj = 8,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Step = 9,
+        Mtl = 9,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Stl = 10,
+        Step = 10,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Stl = 11,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
@@ -301,10 +304,16 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
         ConvertToImage = 107,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        GetAllCircles = 201,
+        ConvertToXml = 108,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        GetSceneStructure = 202,
+        ConvertToWebGL = 109,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        GetArea = 201,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        GetVolume = 202,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
@@ -443,49 +452,45 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
     public enum WriteAutodeskversionType : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Newest = 0,
+        Release12 = 0,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Current = 1,
+        Release13 = 1,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Release27 = 2,
+        Release14 = 2,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Acad2013 = 3,
+        Acad2000 = 3,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Release24 = 4,
+        Acad2004 = 4,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Acad2010 = 5,
+        Acad2007 = 5,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Release21 = 6,
+        Acad2010 = 6,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Acad2007 = 7,
+        Acad2013 = 7,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TransformationsType", Namespace="http://schemas.datacontract.org/2004/07/EyeshotWcfService.Tasks")]
+    public enum TransformationsType : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Release18 = 8,
+        None = 0,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Acad2004 = 9,
+        Rotate = 10,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Release15 = 10,
+        Translate = 20,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Acad2000 = 11,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Release14 = 12,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Release13 = 13,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Release12 = 14,
+        Scale = 30,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -572,6 +577,22 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
         
         string EndConvertToImages(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEyeshot/ConvertToXml", ReplyAction="http://tempuri.org/IEyeshot/ConvertToXmlResponse")]
+        string ConvertToXml();
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IEyeshot/ConvertToXml", ReplyAction="http://tempuri.org/IEyeshot/ConvertToXmlResponse")]
+        System.IAsyncResult BeginConvertToXml(System.AsyncCallback callback, object asyncState);
+        
+        string EndConvertToXml(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEyeshot/ConvertToWebGL", ReplyAction="http://tempuri.org/IEyeshot/ConvertToWebGLResponse")]
+        string ConvertToWebGL(double tolerance, System.Nullable<System.Drawing.Color> htmlBodyColor);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IEyeshot/ConvertToWebGL", ReplyAction="http://tempuri.org/IEyeshot/ConvertToWebGLResponse")]
+        System.IAsyncResult BeginConvertToWebGL(double tolerance, System.Nullable<System.Drawing.Color> htmlBodyColor, System.AsyncCallback callback, object asyncState);
+        
+        string EndConvertToWebGL(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEyeshot/ConvertToDwg", ReplyAction="http://tempuri.org/IEyeshot/ConvertToDwgResponse")]
         string ConvertToDwg(EyeshotWcfClientWinForms.EyeshotServiceRef.WriteAutodeskversionType[] versionTypes, bool aciColors, double tolerance);
         
@@ -620,21 +641,21 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
         
         string EndConvertToStl(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEyeshot/GetAllCircles", ReplyAction="http://tempuri.org/IEyeshot/GetAllCirclesResponse")]
-        string GetAllCircles();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEyeshot/GetArea", ReplyAction="http://tempuri.org/IEyeshot/GetAreaResponse")]
+        string GetArea(double tolerance);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IEyeshot/GetAllCircles", ReplyAction="http://tempuri.org/IEyeshot/GetAllCirclesResponse")]
-        System.IAsyncResult BeginGetAllCircles(System.AsyncCallback callback, object asyncState);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IEyeshot/GetArea", ReplyAction="http://tempuri.org/IEyeshot/GetAreaResponse")]
+        System.IAsyncResult BeginGetArea(double tolerance, System.AsyncCallback callback, object asyncState);
         
-        string EndGetAllCircles(System.IAsyncResult result);
+        string EndGetArea(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEyeshot/GetSceneStructure", ReplyAction="http://tempuri.org/IEyeshot/GetSceneStructureResponse")]
-        string GetSceneStructure();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEyeshot/GetVolume", ReplyAction="http://tempuri.org/IEyeshot/GetVolumeResponse")]
+        string GetVolume(double tolerance);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IEyeshot/GetSceneStructure", ReplyAction="http://tempuri.org/IEyeshot/GetSceneStructureResponse")]
-        System.IAsyncResult BeginGetSceneStructure(System.AsyncCallback callback, object asyncState);
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IEyeshot/GetVolume", ReplyAction="http://tempuri.org/IEyeshot/GetVolumeResponse")]
+        System.IAsyncResult BeginGetVolume(double tolerance, System.AsyncCallback callback, object asyncState);
         
-        string EndGetSceneStructure(System.IAsyncResult result);
+        string EndGetVolume(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEyeshot/GetFullOperationsLog", ReplyAction="http://tempuri.org/IEyeshot/GetFullOperationsLogResponse")]
         string GetFullOperationsLog();
@@ -681,12 +702,20 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
         void EndOnProgressChanged(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IEyeshot/OnOperationCompleted")]
-        void OnOperationCompleted(EyeshotWcfClientWinForms.EyeshotServiceRef.OperationsType operationType, int resultsCount, string log);
+        void OnOperationCompleted(EyeshotWcfClientWinForms.EyeshotServiceRef.OperationsType operationType, int resultsCount, string log, bool skipped);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IEyeshot/OnOperationCompleted")]
-        System.IAsyncResult BeginOnOperationCompleted(EyeshotWcfClientWinForms.EyeshotServiceRef.OperationsType operationType, int resultsCount, string log, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginOnOperationCompleted(EyeshotWcfClientWinForms.EyeshotServiceRef.OperationsType operationType, int resultsCount, string log, bool skipped, System.AsyncCallback callback, object asyncState);
         
         void EndOnOperationCompleted(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IEyeshot/OnTransformationCompleted")]
+        void OnTransformationCompleted(EyeshotWcfClientWinForms.EyeshotServiceRef.TransformationsType transformationType, string log, bool skipped);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://tempuri.org/IEyeshot/OnTransformationCompleted")]
+        System.IAsyncResult BeginOnTransformationCompleted(EyeshotWcfClientWinForms.EyeshotServiceRef.TransformationsType transformationType, string log, bool skipped, System.AsyncCallback callback, object asyncState);
+        
+        void EndOnTransformationCompleted(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -885,6 +914,44 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ConvertToXmlCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public ConvertToXmlCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ConvertToWebGLCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public ConvertToWebGLCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class ConvertToDwgCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -999,11 +1066,11 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetAllCirclesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetAreaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        public GetAllCirclesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        public GetAreaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1018,11 +1085,11 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetSceneStructureCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetVolumeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        public GetSceneStructureCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        public GetVolumeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1175,6 +1242,18 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
         
         private System.Threading.SendOrPostCallback onConvertToImagesCompletedDelegate;
         
+        private BeginOperationDelegate onBeginConvertToXmlDelegate;
+        
+        private EndOperationDelegate onEndConvertToXmlDelegate;
+        
+        private System.Threading.SendOrPostCallback onConvertToXmlCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginConvertToWebGLDelegate;
+        
+        private EndOperationDelegate onEndConvertToWebGLDelegate;
+        
+        private System.Threading.SendOrPostCallback onConvertToWebGLCompletedDelegate;
+        
         private BeginOperationDelegate onBeginConvertToDwgDelegate;
         
         private EndOperationDelegate onEndConvertToDwgDelegate;
@@ -1211,17 +1290,17 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
         
         private System.Threading.SendOrPostCallback onConvertToStlCompletedDelegate;
         
-        private BeginOperationDelegate onBeginGetAllCirclesDelegate;
+        private BeginOperationDelegate onBeginGetAreaDelegate;
         
-        private EndOperationDelegate onEndGetAllCirclesDelegate;
+        private EndOperationDelegate onEndGetAreaDelegate;
         
-        private System.Threading.SendOrPostCallback onGetAllCirclesCompletedDelegate;
+        private System.Threading.SendOrPostCallback onGetAreaCompletedDelegate;
         
-        private BeginOperationDelegate onBeginGetSceneStructureDelegate;
+        private BeginOperationDelegate onBeginGetVolumeDelegate;
         
-        private EndOperationDelegate onEndGetSceneStructureDelegate;
+        private EndOperationDelegate onEndGetVolumeDelegate;
         
-        private System.Threading.SendOrPostCallback onGetSceneStructureCompletedDelegate;
+        private System.Threading.SendOrPostCallback onGetVolumeCompletedDelegate;
         
         private BeginOperationDelegate onBeginGetFullOperationsLogDelegate;
         
@@ -1287,6 +1366,10 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
         
         public event System.EventHandler<ConvertToImagesCompletedEventArgs> ConvertToImagesCompleted;
         
+        public event System.EventHandler<ConvertToXmlCompletedEventArgs> ConvertToXmlCompleted;
+        
+        public event System.EventHandler<ConvertToWebGLCompletedEventArgs> ConvertToWebGLCompleted;
+        
         public event System.EventHandler<ConvertToDwgCompletedEventArgs> ConvertToDwgCompleted;
         
         public event System.EventHandler<ConvertToDxfCompletedEventArgs> ConvertToDxfCompleted;
@@ -1299,9 +1382,9 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
         
         public event System.EventHandler<ConvertToStlCompletedEventArgs> ConvertToStlCompleted;
         
-        public event System.EventHandler<GetAllCirclesCompletedEventArgs> GetAllCirclesCompleted;
+        public event System.EventHandler<GetAreaCompletedEventArgs> GetAreaCompleted;
         
-        public event System.EventHandler<GetSceneStructureCompletedEventArgs> GetSceneStructureCompleted;
+        public event System.EventHandler<GetVolumeCompletedEventArgs> GetVolumeCompleted;
         
         public event System.EventHandler<GetFullOperationsLogCompletedEventArgs> GetFullOperationsLogCompleted;
         
@@ -1819,6 +1902,106 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
                         showOs}, this.onEndConvertToImagesDelegate, this.onConvertToImagesCompletedDelegate, userState);
         }
         
+        public string ConvertToXml() {
+            return base.Channel.ConvertToXml();
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginConvertToXml(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginConvertToXml(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public string EndConvertToXml(System.IAsyncResult result) {
+            return base.Channel.EndConvertToXml(result);
+        }
+        
+        private System.IAsyncResult OnBeginConvertToXml(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginConvertToXml(callback, asyncState);
+        }
+        
+        private object[] OnEndConvertToXml(System.IAsyncResult result) {
+            string retVal = this.EndConvertToXml(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnConvertToXmlCompleted(object state) {
+            if ((this.ConvertToXmlCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.ConvertToXmlCompleted(this, new ConvertToXmlCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void ConvertToXmlAsync() {
+            this.ConvertToXmlAsync(null);
+        }
+        
+        public void ConvertToXmlAsync(object userState) {
+            if ((this.onBeginConvertToXmlDelegate == null)) {
+                this.onBeginConvertToXmlDelegate = new BeginOperationDelegate(this.OnBeginConvertToXml);
+            }
+            if ((this.onEndConvertToXmlDelegate == null)) {
+                this.onEndConvertToXmlDelegate = new EndOperationDelegate(this.OnEndConvertToXml);
+            }
+            if ((this.onConvertToXmlCompletedDelegate == null)) {
+                this.onConvertToXmlCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnConvertToXmlCompleted);
+            }
+            base.InvokeAsync(this.onBeginConvertToXmlDelegate, null, this.onEndConvertToXmlDelegate, this.onConvertToXmlCompletedDelegate, userState);
+        }
+        
+        public string ConvertToWebGL(double tolerance, System.Nullable<System.Drawing.Color> htmlBodyColor) {
+            return base.Channel.ConvertToWebGL(tolerance, htmlBodyColor);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginConvertToWebGL(double tolerance, System.Nullable<System.Drawing.Color> htmlBodyColor, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginConvertToWebGL(tolerance, htmlBodyColor, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public string EndConvertToWebGL(System.IAsyncResult result) {
+            return base.Channel.EndConvertToWebGL(result);
+        }
+        
+        private System.IAsyncResult OnBeginConvertToWebGL(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            double tolerance = ((double)(inValues[0]));
+            System.Nullable<System.Drawing.Color> htmlBodyColor = ((System.Nullable<System.Drawing.Color>)(inValues[1]));
+            return this.BeginConvertToWebGL(tolerance, htmlBodyColor, callback, asyncState);
+        }
+        
+        private object[] OnEndConvertToWebGL(System.IAsyncResult result) {
+            string retVal = this.EndConvertToWebGL(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnConvertToWebGLCompleted(object state) {
+            if ((this.ConvertToWebGLCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.ConvertToWebGLCompleted(this, new ConvertToWebGLCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void ConvertToWebGLAsync(double tolerance, System.Nullable<System.Drawing.Color> htmlBodyColor) {
+            this.ConvertToWebGLAsync(tolerance, htmlBodyColor, null);
+        }
+        
+        public void ConvertToWebGLAsync(double tolerance, System.Nullable<System.Drawing.Color> htmlBodyColor, object userState) {
+            if ((this.onBeginConvertToWebGLDelegate == null)) {
+                this.onBeginConvertToWebGLDelegate = new BeginOperationDelegate(this.OnBeginConvertToWebGL);
+            }
+            if ((this.onEndConvertToWebGLDelegate == null)) {
+                this.onEndConvertToWebGLDelegate = new EndOperationDelegate(this.OnEndConvertToWebGL);
+            }
+            if ((this.onConvertToWebGLCompletedDelegate == null)) {
+                this.onConvertToWebGLCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnConvertToWebGLCompleted);
+            }
+            base.InvokeAsync(this.onBeginConvertToWebGLDelegate, new object[] {
+                        tolerance,
+                        htmlBodyColor}, this.onEndConvertToWebGLDelegate, this.onConvertToWebGLCompletedDelegate, userState);
+        }
+        
         public string ConvertToDwg(EyeshotWcfClientWinForms.EyeshotServiceRef.WriteAutodeskversionType[] versionTypes, bool aciColors, double tolerance) {
             return base.Channel.ConvertToDwg(versionTypes, aciColors, tolerance);
         }
@@ -2123,100 +2306,104 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
                         tolerance}, this.onEndConvertToStlDelegate, this.onConvertToStlCompletedDelegate, userState);
         }
         
-        public string GetAllCircles() {
-            return base.Channel.GetAllCircles();
+        public string GetArea(double tolerance) {
+            return base.Channel.GetArea(tolerance);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginGetAllCircles(System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetAllCircles(callback, asyncState);
+        public System.IAsyncResult BeginGetArea(double tolerance, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetArea(tolerance, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public string EndGetAllCircles(System.IAsyncResult result) {
-            return base.Channel.EndGetAllCircles(result);
+        public string EndGetArea(System.IAsyncResult result) {
+            return base.Channel.EndGetArea(result);
         }
         
-        private System.IAsyncResult OnBeginGetAllCircles(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            return this.BeginGetAllCircles(callback, asyncState);
+        private System.IAsyncResult OnBeginGetArea(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            double tolerance = ((double)(inValues[0]));
+            return this.BeginGetArea(tolerance, callback, asyncState);
         }
         
-        private object[] OnEndGetAllCircles(System.IAsyncResult result) {
-            string retVal = this.EndGetAllCircles(result);
+        private object[] OnEndGetArea(System.IAsyncResult result) {
+            string retVal = this.EndGetArea(result);
             return new object[] {
                     retVal};
         }
         
-        private void OnGetAllCirclesCompleted(object state) {
-            if ((this.GetAllCirclesCompleted != null)) {
+        private void OnGetAreaCompleted(object state) {
+            if ((this.GetAreaCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.GetAllCirclesCompleted(this, new GetAllCirclesCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+                this.GetAreaCompleted(this, new GetAreaCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
             }
         }
         
-        public void GetAllCirclesAsync() {
-            this.GetAllCirclesAsync(null);
+        public void GetAreaAsync(double tolerance) {
+            this.GetAreaAsync(tolerance, null);
         }
         
-        public void GetAllCirclesAsync(object userState) {
-            if ((this.onBeginGetAllCirclesDelegate == null)) {
-                this.onBeginGetAllCirclesDelegate = new BeginOperationDelegate(this.OnBeginGetAllCircles);
+        public void GetAreaAsync(double tolerance, object userState) {
+            if ((this.onBeginGetAreaDelegate == null)) {
+                this.onBeginGetAreaDelegate = new BeginOperationDelegate(this.OnBeginGetArea);
             }
-            if ((this.onEndGetAllCirclesDelegate == null)) {
-                this.onEndGetAllCirclesDelegate = new EndOperationDelegate(this.OnEndGetAllCircles);
+            if ((this.onEndGetAreaDelegate == null)) {
+                this.onEndGetAreaDelegate = new EndOperationDelegate(this.OnEndGetArea);
             }
-            if ((this.onGetAllCirclesCompletedDelegate == null)) {
-                this.onGetAllCirclesCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetAllCirclesCompleted);
+            if ((this.onGetAreaCompletedDelegate == null)) {
+                this.onGetAreaCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetAreaCompleted);
             }
-            base.InvokeAsync(this.onBeginGetAllCirclesDelegate, null, this.onEndGetAllCirclesDelegate, this.onGetAllCirclesCompletedDelegate, userState);
+            base.InvokeAsync(this.onBeginGetAreaDelegate, new object[] {
+                        tolerance}, this.onEndGetAreaDelegate, this.onGetAreaCompletedDelegate, userState);
         }
         
-        public string GetSceneStructure() {
-            return base.Channel.GetSceneStructure();
+        public string GetVolume(double tolerance) {
+            return base.Channel.GetVolume(tolerance);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginGetSceneStructure(System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetSceneStructure(callback, asyncState);
+        public System.IAsyncResult BeginGetVolume(double tolerance, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetVolume(tolerance, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public string EndGetSceneStructure(System.IAsyncResult result) {
-            return base.Channel.EndGetSceneStructure(result);
+        public string EndGetVolume(System.IAsyncResult result) {
+            return base.Channel.EndGetVolume(result);
         }
         
-        private System.IAsyncResult OnBeginGetSceneStructure(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            return this.BeginGetSceneStructure(callback, asyncState);
+        private System.IAsyncResult OnBeginGetVolume(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            double tolerance = ((double)(inValues[0]));
+            return this.BeginGetVolume(tolerance, callback, asyncState);
         }
         
-        private object[] OnEndGetSceneStructure(System.IAsyncResult result) {
-            string retVal = this.EndGetSceneStructure(result);
+        private object[] OnEndGetVolume(System.IAsyncResult result) {
+            string retVal = this.EndGetVolume(result);
             return new object[] {
                     retVal};
         }
         
-        private void OnGetSceneStructureCompleted(object state) {
-            if ((this.GetSceneStructureCompleted != null)) {
+        private void OnGetVolumeCompleted(object state) {
+            if ((this.GetVolumeCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.GetSceneStructureCompleted(this, new GetSceneStructureCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+                this.GetVolumeCompleted(this, new GetVolumeCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
             }
         }
         
-        public void GetSceneStructureAsync() {
-            this.GetSceneStructureAsync(null);
+        public void GetVolumeAsync(double tolerance) {
+            this.GetVolumeAsync(tolerance, null);
         }
         
-        public void GetSceneStructureAsync(object userState) {
-            if ((this.onBeginGetSceneStructureDelegate == null)) {
-                this.onBeginGetSceneStructureDelegate = new BeginOperationDelegate(this.OnBeginGetSceneStructure);
+        public void GetVolumeAsync(double tolerance, object userState) {
+            if ((this.onBeginGetVolumeDelegate == null)) {
+                this.onBeginGetVolumeDelegate = new BeginOperationDelegate(this.OnBeginGetVolume);
             }
-            if ((this.onEndGetSceneStructureDelegate == null)) {
-                this.onEndGetSceneStructureDelegate = new EndOperationDelegate(this.OnEndGetSceneStructure);
+            if ((this.onEndGetVolumeDelegate == null)) {
+                this.onEndGetVolumeDelegate = new EndOperationDelegate(this.OnEndGetVolume);
             }
-            if ((this.onGetSceneStructureCompletedDelegate == null)) {
-                this.onGetSceneStructureCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetSceneStructureCompleted);
+            if ((this.onGetVolumeCompletedDelegate == null)) {
+                this.onGetVolumeCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetVolumeCompleted);
             }
-            base.InvokeAsync(this.onBeginGetSceneStructureDelegate, null, this.onEndGetSceneStructureDelegate, this.onGetSceneStructureCompletedDelegate, userState);
+            base.InvokeAsync(this.onBeginGetVolumeDelegate, new object[] {
+                        tolerance}, this.onEndGetVolumeDelegate, this.onGetVolumeCompletedDelegate, userState);
         }
         
         public string GetFullOperationsLog() {

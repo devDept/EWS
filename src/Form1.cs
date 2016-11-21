@@ -24,7 +24,7 @@ namespace EyeshotWcfClientWinForms
         /// <summary>
         /// The visualizer for the downloaded files.
         /// </summary>
-        private OutputVisualizer _outputVisualizer;        
+        private OutputVisualizer _outputVisualizer;            
 
         /// <summary>
         /// The connection id (callback channel).
@@ -253,14 +253,17 @@ namespace EyeshotWcfClientWinForms
         #region Initializations
 
         private void InitImageConversion()
-        {
-            cmbAddImage.Items.Add(viewType.Trimetric);
-            cmbAddImage.Items.Add(viewType.Left);
-            cmbAddImage.Items.Add(viewType.Right);
-            cmbAddImage.Items.Add(viewType.Top);
-            cmbAddImage.Items.Add(viewType.Bottom);
-            cmbAddImage.Items.Add(viewType.Front);
-            cmbAddImage.Items.Add(viewType.Rear);
+        {            
+            cmbAddImage.DisplayMember = "Key";
+            cmbAddImage.ValueMember = "Value";
+
+            cmbAddImage.Items.Add(new KeyValuePair<string, viewType>("Create Trimetric Image", viewType.Trimetric));
+            cmbAddImage.Items.Add(new KeyValuePair<string, viewType>("Create Left Image", viewType.Left));
+            cmbAddImage.Items.Add(new KeyValuePair<string, viewType>("Create Right Image", viewType.Right));
+            cmbAddImage.Items.Add(new KeyValuePair<string, viewType>("Create Top Image", viewType.Top));
+            cmbAddImage.Items.Add(new KeyValuePair<string, viewType>("Create Bottom Image", viewType.Bottom));
+            cmbAddImage.Items.Add(new KeyValuePair<string, viewType>("Create Front Image", viewType.Front));
+            cmbAddImage.Items.Add(new KeyValuePair<string, viewType>("Create Rear Image", viewType.Rear));
         }
 
         private Dictionary<string, Tuple<OperationsType, object>>  _conversionTypes;
@@ -277,6 +280,8 @@ namespace EyeshotWcfClientWinForms
             _conversionTypes.Add("Convert to IGES", new Tuple<OperationsType, object>(OperationsType.ConvertToIges, null));
             _conversionTypes.Add("Convert to STEP", new Tuple<OperationsType, object>(OperationsType.ConvertToStep, null));
             _conversionTypes.Add("Convert to STL", new Tuple<OperationsType, object>(OperationsType.ConvertToStl, null));
+            _conversionTypes.Add("Convert to XML", new Tuple<OperationsType, object>(OperationsType.ConvertToXml, null));
+            _conversionTypes.Add("Convert to WebGL", new Tuple<OperationsType, object>(OperationsType.ConvertToWebGL, null));
 
             foreach (var conversionType in _conversionTypes)            
                 cmbAddConversion.Items.Add(conversionType.Key);                        
@@ -293,8 +298,8 @@ namespace EyeshotWcfClientWinForms
         private void InitInquiries()
         {
             _inquiryTypes = new Dictionary<string, OperationsType>();
-            _inquiryTypes.Add("Get scene structure", OperationsType.GetSceneStructure);
-            _inquiryTypes.Add("Get all circles", OperationsType.GetAllCircles);
+            _inquiryTypes.Add("Compute Area", OperationsType.GetArea);
+            _inquiryTypes.Add("Compute Volume", OperationsType.GetVolume);
 
             foreach (var inquiryType in _inquiryTypes)            
                 cmbAddInquiries.Items.Add(inquiryType.Key);            
@@ -437,12 +442,14 @@ namespace EyeshotWcfClientWinForms
             if (subscribe)
             {
                 _callback.ServiceOnProgressChangedEvent += EyeshotServiceOnOnProgressChangedEvent;
-                _callback.ServiceOnOperationCompletedEvent += EyeshotServiceOnOperationCompleted;                
+                _callback.ServiceOnOperationCompletedEvent += EyeshotServiceOnOperationCompleted;
+                _callback.ServiceOnTransformationCompletedEvent += EyeshotServiceOnTransformationCompleted;
             }
             else
             {
                 _callback.ServiceOnProgressChangedEvent -= EyeshotServiceOnOnProgressChangedEvent;
-                _callback.ServiceOnOperationCompletedEvent -= EyeshotServiceOnOperationCompleted;                
+                _callback.ServiceOnOperationCompletedEvent -= EyeshotServiceOnOperationCompleted;
+                _callback.ServiceOnTransformationCompletedEvent -= EyeshotServiceOnTransformationCompleted;
             }
         }        
 
@@ -672,8 +679,18 @@ namespace EyeshotWcfClientWinForms
             {
                 btnBottomColor.BackColor = colorDialog1.Color;
             }
-        }        
-        #endregion        
+        }
+
+        private void btnHtmlBodyColor_Click(object sender, EventArgs e)
+        {
+            colorDialog1.Color = btnHtmlBodyColor.BackColor;
+
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                btnHtmlBodyColor.BackColor = colorDialog1.Color;
+            }
+        }
+        #endregion
 
         #region Tasks
 
@@ -741,10 +758,12 @@ namespace EyeshotWcfClientWinForms
                 return;
 
             TaskListCompleted(false);
-
-            viewType viewType = (viewType)cmbAddImage.SelectedItem;
-            _client.ConvertToImages(new[] { viewType }, (int)numWidthImages.Value, (int)numHeightImages.Value, btnTopColor.BackColor, btnBottomColor.BackColor, chkCsi.Checked, chkOs.Checked);
-            lstBoxTasks.Items.Add(String.Format("{0} image", viewType));
+            
+            viewType viewType = ((KeyValuePair<string, viewType>)cmbAddImage.SelectedItem).Value;
+            int width = (int)numWidthImages.Value;
+            int height = (int)numHeightImages.Value;
+            _client.ConvertToImages(new[] { viewType }, width, height, btnTopColor.BackColor, btnBottomColor.BackColor, chkCsi.Checked, chkOs.Checked);
+            lstBoxTasks.Items.Add(String.Format("{0} ({1}x{2})", ((KeyValuePair<string, viewType>)cmbAddImage.SelectedItem).Key, width, height));
         }
 
         private void btnAddConversion_Click(object sender, EventArgs e)
@@ -757,36 +776,42 @@ namespace EyeshotWcfClientWinForms
             string taskItem = (string)cmbAddConversion.SelectedItem;
             var selected = _conversionTypes[taskItem];
             OperationsType operationsType = selected.Item1;
+            var tolerance = (double)numTolerance.Value;
 
             switch (operationsType)
             {
                 case OperationsType.ConvertToDwg:
                     var dwgVersion = (WriteAutodeskversionType)selected.Item2;
-                    var dwgTol = (double)numTolAutodesk.Value;
-                    taskItem = String.Format("{0} (Tol. {1})", taskItem, dwgTol);
-                    _client.ConvertToDwg(new[] { dwgVersion }, chkAciColors.Checked, dwgTol);
+                    
+                    taskItem = String.Format("{0} (Tol. {1})", taskItem, tolerance);
+                    _client.ConvertToDwg(new[] { dwgVersion }, chkAciColors.Checked, tolerance);
                     break;
                 case OperationsType.ConvertToDxf:
                     var dxfVersion = (WriteAutodeskversionType)selected.Item2;
-                    var dxfTol = (double)numTolAutodesk.Value;
+                    var dxfTol = (double)numTolerance.Value;
                     taskItem = String.Format("{0} (Tol. {1})", taskItem, dxfTol);
                     _client.ConvertToDxf(new[] { dxfVersion }, chkAciColors.Checked, dxfTol);
                     break;
                 case OperationsType.ConvertToIges:
                     _client.ConvertToIges();
                     break;
-                case OperationsType.ConvertToObj:
-                    var objTol = (double)numTolObj.Value;
-                    taskItem = String.Format("{0} (Tol. {1})", taskItem, objTol);
-                    _client.ConvertToObj(objTol);
+                case OperationsType.ConvertToObj:                    
+                    taskItem = String.Format("{0} (Tol. {1})", taskItem, tolerance);
+                    _client.ConvertToObj(tolerance);
                     break;
                 case OperationsType.ConvertToStep:
                     _client.ConvertToStep();
                     break;
-                case OperationsType.ConvertToStl:
-                    var stlTol = (double)numTolStl.Value;
-                    taskItem = String.Format("{0} (Tol. {1})", taskItem, stlTol);
-                    _client.ConvertToStl(stlTol);
+                case OperationsType.ConvertToStl:                    
+                    taskItem = String.Format("{0} (Tol. {1})", taskItem, tolerance);
+                    _client.ConvertToStl(tolerance);
+                    break;
+                case OperationsType.ConvertToXml:
+                    _client.ConvertToXml();
+                    break;
+                case OperationsType.ConvertToWebGL:
+                    taskItem = String.Format("{0} (Tol. {1})", taskItem, tolerance);
+                    _client.ConvertToWebGL(tolerance, btnHtmlBodyColor.BackColor);
                     break;
             }
 
@@ -804,19 +829,22 @@ namespace EyeshotWcfClientWinForms
 
             TaskListCompleted(false);
 
-            string item = (string)cmbAddInquiries.SelectedItem;
-            var selected = _inquiryTypes[item];
+            string taskItem = (string)cmbAddInquiries.SelectedItem;
+            var selected = _inquiryTypes[taskItem];
+            var tolerance = (double)numTolerance.Value;
             switch (selected)
             {                
-                case OperationsType.GetAllCircles:
-                    _client.GetAllCircles();
+                case OperationsType.GetArea:
+                    taskItem = String.Format("{0} (Tol. {1})", taskItem, tolerance);
+                    _client.GetArea(tolerance);
                     break;
-                case OperationsType.GetSceneStructure:
-                    _client.GetSceneStructure();
+                case OperationsType.GetVolume:
+                    taskItem = String.Format("{0} (Tol. {1})", taskItem, tolerance);
+                    _client.GetVolume(tolerance);
                     break;             
             }
 
-            lstBoxTasks.Items.Add(item);
+            lstBoxTasks.Items.Add(taskItem);
         }                
         #endregion
 
@@ -833,10 +861,17 @@ namespace EyeshotWcfClientWinForms
             {
                 btnDownload.Enabled = btnGetFullLog.Enabled = false;
                 SetButtonsEnabled(true);
+                if (e.Skipped)
+                    ProgressBarReset(progressBarOperations);
             }
 
             if (e.OperationType == OperationsType.GetFullOperationsLog)
                 StartDownload();
+        }
+
+        private void EyeshotServiceOnTransformationCompleted(object sender, OnTransformationCompletedEventArgs e)
+        {
+            AppendToLog(e.Log);
         }
 
         #endregion
@@ -973,6 +1008,11 @@ namespace EyeshotWcfClientWinForms
                 if (_outputVisualizer == null || _outputVisualizer.IsDisposed)
                     _outputVisualizer = new OutputVisualizer();
                 _outputVisualizer.LoadFile(path);
+            }
+            else if (extension.EndsWith("htm") || extension.EndsWith("html"))
+            {
+                // Open in default browser
+                System.Diagnostics.Process.Start(path);
             }
             else
             {

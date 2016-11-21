@@ -55,16 +55,13 @@
             this.btnTopColor = new System.Windows.Forms.Button();
             this.grpImagesSize = new System.Windows.Forms.GroupBox();
             this.pgAutodesk = new System.Windows.Forms.TabPage();
-            this.lblRegenAutodesk = new System.Windows.Forms.Label();
-            this.numTolAutodesk = new System.Windows.Forms.NumericUpDown();
             this.chkAciColors = new System.Windows.Forms.CheckBox();
-            this.pgObj = new System.Windows.Forms.TabPage();
-            this.lblRegenObj = new System.Windows.Forms.Label();
-            this.numTolObj = new System.Windows.Forms.NumericUpDown();
-            this.pgStl = new System.Windows.Forms.TabPage();
-            this.lblRegenStl = new System.Windows.Forms.Label();
-            this.numTolStl = new System.Windows.Forms.NumericUpDown();
+            this.pgWebGL = new System.Windows.Forms.TabPage();
+            this.lblHtmlBodyColor = new System.Windows.Forms.Label();
+            this.btnHtmlBodyColor = new System.Windows.Forms.Button();
             this.pgGeneral = new System.Windows.Forms.TabPage();
+            this.lblTol = new System.Windows.Forms.Label();
+            this.numTolerance = new System.Windows.Forms.NumericUpDown();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.grpInput = new System.Windows.Forms.GroupBox();
             this.grpReadingSettings = new System.Windows.Forms.GroupBox();
@@ -108,12 +105,9 @@
             this.grpImagesColors.SuspendLayout();
             this.grpImagesSize.SuspendLayout();
             this.pgAutodesk.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numTolAutodesk)).BeginInit();
-            this.pgObj.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numTolObj)).BeginInit();
-            this.pgStl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numTolStl)).BeginInit();
+            this.pgWebGL.SuspendLayout();
             this.pgGeneral.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numTolerance)).BeginInit();
             this.grpInput.SuspendLayout();
             this.grpReadingSettings.SuspendLayout();
             this.grpStepReading.SuspendLayout();
@@ -403,16 +397,17 @@
             // 
             // tabControlSettings
             // 
+            this.tabControlSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControlSettings.Controls.Add(this.pgImages);
             this.tabControlSettings.Controls.Add(this.pgAutodesk);
-            this.tabControlSettings.Controls.Add(this.pgObj);
-            this.tabControlSettings.Controls.Add(this.pgStl);
+            this.tabControlSettings.Controls.Add(this.pgWebGL);
             this.tabControlSettings.Controls.Add(this.pgGeneral);
-            this.tabControlSettings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlSettings.Location = new System.Drawing.Point(3, 16);
             this.tabControlSettings.Name = "tabControlSettings";
             this.tabControlSettings.SelectedIndex = 0;
-            this.tabControlSettings.Size = new System.Drawing.Size(355, 249);
+            this.tabControlSettings.Size = new System.Drawing.Size(355, 219);
             this.tabControlSettings.TabIndex = 31;
             // 
             // pgImages
@@ -423,8 +418,8 @@
             this.pgImages.Controls.Add(this.grpImagesSize);
             this.pgImages.Location = new System.Drawing.Point(4, 22);
             this.pgImages.Name = "pgImages";
-            this.pgImages.Padding = new System.Windows.Forms.Padding(3);
-            this.pgImages.Size = new System.Drawing.Size(347, 223);
+            this.pgImages.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.pgImages.Size = new System.Drawing.Size(347, 193);
             this.pgImages.TabIndex = 1;
             this.pgImages.Text = "Images";
             this.pgImages.UseVisualStyleBackColor = true;
@@ -517,43 +512,14 @@
             // 
             // pgAutodesk
             // 
-            this.pgAutodesk.Controls.Add(this.lblRegenAutodesk);
-            this.pgAutodesk.Controls.Add(this.numTolAutodesk);
             this.pgAutodesk.Controls.Add(this.chkAciColors);
             this.pgAutodesk.Location = new System.Drawing.Point(4, 22);
             this.pgAutodesk.Name = "pgAutodesk";
-            this.pgAutodesk.Padding = new System.Windows.Forms.Padding(3);
-            this.pgAutodesk.Size = new System.Drawing.Size(347, 223);
+            this.pgAutodesk.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.pgAutodesk.Size = new System.Drawing.Size(347, 193);
             this.pgAutodesk.TabIndex = 2;
             this.pgAutodesk.Text = "DWG/DXF";
             this.pgAutodesk.UseVisualStyleBackColor = true;
-            // 
-            // lblRegenAutodesk
-            // 
-            this.lblRegenAutodesk.AutoSize = true;
-            this.lblRegenAutodesk.Location = new System.Drawing.Point(7, 63);
-            this.lblRegenAutodesk.Name = "lblRegenAutodesk";
-            this.lblRegenAutodesk.Size = new System.Drawing.Size(86, 13);
-            this.lblRegenAutodesk.TabIndex = 28;
-            this.lblRegenAutodesk.Text = "Regen tolerance";
-            // 
-            // numTolAutodesk
-            // 
-            this.numTolAutodesk.DecimalPlaces = 4;
-            this.numTolAutodesk.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numTolAutodesk.Location = new System.Drawing.Point(99, 61);
-            this.numTolAutodesk.Name = "numTolAutodesk";
-            this.numTolAutodesk.Size = new System.Drawing.Size(90, 20);
-            this.numTolAutodesk.TabIndex = 27;
-            this.numTolAutodesk.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
             // 
             // chkAciColors
             // 
@@ -567,83 +533,37 @@
             this.chkAciColors.Text = "Save the colors as Aci colors if possible.\r\n(Autocad color index)";
             this.chkAciColors.UseVisualStyleBackColor = true;
             // 
-            // pgObj
+            // pgWebGL
             // 
-            this.pgObj.Controls.Add(this.lblRegenObj);
-            this.pgObj.Controls.Add(this.numTolObj);
-            this.pgObj.Location = new System.Drawing.Point(4, 22);
-            this.pgObj.Name = "pgObj";
-            this.pgObj.Padding = new System.Windows.Forms.Padding(3);
-            this.pgObj.Size = new System.Drawing.Size(347, 223);
-            this.pgObj.TabIndex = 3;
-            this.pgObj.Text = "OBJ";
-            this.pgObj.UseVisualStyleBackColor = true;
+            this.pgWebGL.Controls.Add(this.lblHtmlBodyColor);
+            this.pgWebGL.Controls.Add(this.btnHtmlBodyColor);
+            this.pgWebGL.Location = new System.Drawing.Point(4, 22);
+            this.pgWebGL.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pgWebGL.Name = "pgWebGL";
+            this.pgWebGL.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pgWebGL.Size = new System.Drawing.Size(347, 193);
+            this.pgWebGL.TabIndex = 3;
+            this.pgWebGL.Text = "WebGL";
+            this.pgWebGL.UseVisualStyleBackColor = true;
             // 
-            // lblRegenObj
+            // lblHtmlBodyColor
             // 
-            this.lblRegenObj.AutoSize = true;
-            this.lblRegenObj.Location = new System.Drawing.Point(7, 22);
-            this.lblRegenObj.Name = "lblRegenObj";
-            this.lblRegenObj.Size = new System.Drawing.Size(86, 13);
-            this.lblRegenObj.TabIndex = 28;
-            this.lblRegenObj.Text = "Regen tolerance";
+            this.lblHtmlBodyColor.AutoSize = true;
+            this.lblHtmlBodyColor.Location = new System.Drawing.Point(8, 20);
+            this.lblHtmlBodyColor.Name = "lblHtmlBodyColor";
+            this.lblHtmlBodyColor.Size = new System.Drawing.Size(89, 13);
+            this.lblHtmlBodyColor.TabIndex = 85;
+            this.lblHtmlBodyColor.Text = "HTML body color";
             // 
-            // numTolObj
+            // btnHtmlBodyColor
             // 
-            this.numTolObj.DecimalPlaces = 4;
-            this.numTolObj.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numTolObj.Location = new System.Drawing.Point(99, 20);
-            this.numTolObj.Name = "numTolObj";
-            this.numTolObj.Size = new System.Drawing.Size(90, 20);
-            this.numTolObj.TabIndex = 27;
-            this.numTolObj.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            // 
-            // pgStl
-            // 
-            this.pgStl.Controls.Add(this.lblRegenStl);
-            this.pgStl.Controls.Add(this.numTolStl);
-            this.pgStl.Location = new System.Drawing.Point(4, 22);
-            this.pgStl.Name = "pgStl";
-            this.pgStl.Padding = new System.Windows.Forms.Padding(3);
-            this.pgStl.Size = new System.Drawing.Size(347, 223);
-            this.pgStl.TabIndex = 4;
-            this.pgStl.Text = "STL";
-            this.pgStl.UseVisualStyleBackColor = true;
-            // 
-            // lblRegenStl
-            // 
-            this.lblRegenStl.AutoSize = true;
-            this.lblRegenStl.Location = new System.Drawing.Point(7, 22);
-            this.lblRegenStl.Name = "lblRegenStl";
-            this.lblRegenStl.Size = new System.Drawing.Size(86, 13);
-            this.lblRegenStl.TabIndex = 28;
-            this.lblRegenStl.Text = "Regen tolerance";
-            // 
-            // numTolStl
-            // 
-            this.numTolStl.DecimalPlaces = 4;
-            this.numTolStl.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numTolStl.Location = new System.Drawing.Point(99, 20);
-            this.numTolStl.Name = "numTolStl";
-            this.numTolStl.Size = new System.Drawing.Size(90, 20);
-            this.numTolStl.TabIndex = 27;
-            this.numTolStl.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
+            this.btnHtmlBodyColor.BackColor = System.Drawing.Color.White;
+            this.btnHtmlBodyColor.Location = new System.Drawing.Point(104, 15);
+            this.btnHtmlBodyColor.Name = "btnHtmlBodyColor";
+            this.btnHtmlBodyColor.Size = new System.Drawing.Size(66, 22);
+            this.btnHtmlBodyColor.TabIndex = 84;
+            this.btnHtmlBodyColor.UseVisualStyleBackColor = false;
+            this.btnHtmlBodyColor.Click += new System.EventHandler(this.btnHtmlBodyColor_Click);
             // 
             // pgGeneral
             // 
@@ -651,11 +571,39 @@
             this.pgGeneral.Controls.Add(this.chkDeleteFiles);
             this.pgGeneral.Location = new System.Drawing.Point(4, 22);
             this.pgGeneral.Name = "pgGeneral";
-            this.pgGeneral.Padding = new System.Windows.Forms.Padding(3);
-            this.pgGeneral.Size = new System.Drawing.Size(347, 223);
+            this.pgGeneral.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.pgGeneral.Size = new System.Drawing.Size(347, 193);
             this.pgGeneral.TabIndex = 0;
             this.pgGeneral.Text = "General";
             this.pgGeneral.UseVisualStyleBackColor = true;
+            // 
+            // lblTol
+            // 
+            this.lblTol.AutoSize = true;
+            this.lblTol.Location = new System.Drawing.Point(8, 243);
+            this.lblTol.Name = "lblTol";
+            this.lblTol.Size = new System.Drawing.Size(110, 13);
+            this.lblTol.TabIndex = 28;
+            this.lblTol.Text = "Tessellation tolerance";
+            // 
+            // numTolerance
+            // 
+            this.numTolerance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.numTolerance.DecimalPlaces = 3;
+            this.numTolerance.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.numTolerance.Location = new System.Drawing.Point(122, 241);
+            this.numTolerance.Name = "numTolerance";
+            this.numTolerance.Size = new System.Drawing.Size(90, 20);
+            this.numTolerance.TabIndex = 27;
+            this.numTolerance.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             // 
             // grpInput
             // 
@@ -752,7 +700,9 @@
             // grpConversionSettings
             // 
             this.grpConversionSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpConversionSettings.Controls.Add(this.lblTol);
             this.grpConversionSettings.Controls.Add(this.tabControlSettings);
+            this.grpConversionSettings.Controls.Add(this.numTolerance);
             this.grpConversionSettings.Location = new System.Drawing.Point(778, 194);
             this.grpConversionSettings.Name = "grpConversionSettings";
             this.grpConversionSettings.Size = new System.Drawing.Size(361, 268);
@@ -1039,15 +989,11 @@
             this.grpImagesSize.PerformLayout();
             this.pgAutodesk.ResumeLayout(false);
             this.pgAutodesk.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numTolAutodesk)).EndInit();
-            this.pgObj.ResumeLayout(false);
-            this.pgObj.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numTolObj)).EndInit();
-            this.pgStl.ResumeLayout(false);
-            this.pgStl.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numTolStl)).EndInit();
+            this.pgWebGL.ResumeLayout(false);
+            this.pgWebGL.PerformLayout();
             this.pgGeneral.ResumeLayout(false);
             this.pgGeneral.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numTolerance)).EndInit();
             this.grpInput.ResumeLayout(false);
             this.grpInput.PerformLayout();
             this.grpReadingSettings.ResumeLayout(false);
@@ -1056,6 +1002,7 @@
             this.grpAutodeskReading.ResumeLayout(false);
             this.grpAutodeskReading.PerformLayout();
             this.grpConversionSettings.ResumeLayout(false);
+            this.grpConversionSettings.PerformLayout();
             this.grpOutput.ResumeLayout(false);
             this.grpLog.ResumeLayout(false);
             this.grpLog.PerformLayout();
@@ -1143,14 +1090,11 @@
         private System.Windows.Forms.ComboBox cmbAddConversion;
         private System.Windows.Forms.GroupBox grpAddTransformation;
         private System.Windows.Forms.ComboBox cmbAddTransformation;
-        private System.Windows.Forms.Label lblRegenAutodesk;
-        private System.Windows.Forms.NumericUpDown numTolAutodesk;
-        private System.Windows.Forms.TabPage pgObj;
-        private System.Windows.Forms.Label lblRegenObj;
-        private System.Windows.Forms.NumericUpDown numTolObj;
-        private System.Windows.Forms.TabPage pgStl;
-        private System.Windows.Forms.Label lblRegenStl;
-        private System.Windows.Forms.NumericUpDown numTolStl;
+        private System.Windows.Forms.Label lblTol;
+        private System.Windows.Forms.NumericUpDown numTolerance;
+        private System.Windows.Forms.TabPage pgWebGL;
+        private System.Windows.Forms.Label lblHtmlBodyColor;
+        private System.Windows.Forms.Button btnHtmlBodyColor;
     }
 }
 
