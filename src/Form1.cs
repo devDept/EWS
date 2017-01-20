@@ -364,8 +364,11 @@ namespace EyeshotWcfClientWinForms
                 opened = true;
             }
             catch (Exception ex)
-            {                
-                AppendToLog(ex.Message);
+            {
+                if (ex is PlatformNotSupportedException)
+                    AppendToLog("This platform does not support client side WebSockets natively. Please try with a more recent Windows version (Windows 8 or higher)");
+                else
+                    AppendToLog(ex.Message);
                 btnConnect.Enabled = true;
             }
 
