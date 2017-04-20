@@ -1200,18 +1200,44 @@ namespace EyeshotWcfClientWinForms
             Size newSize;
             if (_advancedMode)
             {
-                newSize = new Size(1165, 705);
+                newSize = new Size((int)(1165 * ScalingLevel.Width), (int)(705 * ScalingLevel.Height));
                 linkWorkingMode.Text = "Basic mode";
                 btnGetFullLog.Visible = true;
             }
             else
             {
-                newSize = new Size(805, 715);
+                newSize = new Size((int)(805 * ScalingLevel.Width), (int)(715 * ScalingLevel.Height));
                 linkWorkingMode.Text = "Advanced mode";
                 btnGetFullLog.Visible = false;
             }
 
-            MinimumSize = MaximumSize = Size = newSize;
+            Size = MinimumSize = newSize;
+        }
+
+        #endregion
+
+        #region Helpers
+
+        // For the resolution independence (dpiAware).
+        private static SizeF _scalingLevel = SizeF.Empty;
+        public static SizeF ScalingLevel
+        {
+            get
+            {
+                if (_scalingLevel.IsEmpty)
+                {
+                    float width, height;
+                    using (System.Drawing.Graphics graphics = System.Drawing.Graphics.FromHwnd(IntPtr.Zero))
+                    {
+                        width = graphics.DpiX / 96;
+                        height = graphics.DpiY / 96;
+                    }
+
+                    _scalingLevel = new SizeF(width, height);
+                }
+
+                return _scalingLevel;
+            }
         }
 
         #endregion
