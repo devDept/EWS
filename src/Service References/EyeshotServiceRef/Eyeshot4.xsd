@@ -203,6 +203,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ConvertTo3DPdf">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConvertTo3DPdfResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ConvertTo3DPdfResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="ConvertToObj">
     <xs:complexType>
       <xs:sequence>

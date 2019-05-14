@@ -270,9 +270,11 @@ namespace EyeshotWcfClientWinForms
         private void InitConversionTypes()
         {
             _conversionTypes = new Dictionary<string, Tuple<OperationsType, object>>();
+            _conversionTypes.Add("Convert to DWG (2018)", new Tuple<OperationsType, object>(OperationsType.ConvertToDwg, WriteAutodeskversionType.Acad2018));
             _conversionTypes.Add("Convert to DWG (2013)", new Tuple<OperationsType, object>(OperationsType.ConvertToDwg, WriteAutodeskversionType.Acad2013));
             _conversionTypes.Add("Convert to DWG (2010)", new Tuple<OperationsType, object>(OperationsType.ConvertToDwg, WriteAutodeskversionType.Acad2010));
             _conversionTypes.Add("Convert to DWG (2000)", new Tuple<OperationsType, object>(OperationsType.ConvertToDwg, WriteAutodeskversionType.Acad2000));
+            _conversionTypes.Add("Convert to DXF (2018)", new Tuple<OperationsType, object>(OperationsType.ConvertToDxf, WriteAutodeskversionType.Acad2018));
             _conversionTypes.Add("Convert to DXF (2013)", new Tuple<OperationsType, object>(OperationsType.ConvertToDxf, WriteAutodeskversionType.Acad2013));
             _conversionTypes.Add("Convert to DXF (2010)", new Tuple<OperationsType, object>(OperationsType.ConvertToDxf, WriteAutodeskversionType.Acad2010));
             _conversionTypes.Add("Convert to DXF (2000)", new Tuple<OperationsType, object>(OperationsType.ConvertToDxf, WriteAutodeskversionType.Acad2000));
@@ -282,6 +284,7 @@ namespace EyeshotWcfClientWinForms
             _conversionTypes.Add("Convert to STL", new Tuple<OperationsType, object>(OperationsType.ConvertToStl, null));
             _conversionTypes.Add("Convert to XML", new Tuple<OperationsType, object>(OperationsType.ConvertToXml, null));
             _conversionTypes.Add("Convert to WebGL", new Tuple<OperationsType, object>(OperationsType.ConvertToWebGL, null));
+            _conversionTypes.Add("Convert to 3D PDF", new Tuple<OperationsType, object>(OperationsType.ConvertTo3DPdf, null));
 
             foreach (var conversionType in _conversionTypes)            
                 cmbAddConversion.Items.Add(conversionType.Key);                        
@@ -816,6 +819,9 @@ namespace EyeshotWcfClientWinForms
                     taskItem = String.Format("{0} (Tol. {1})", taskItem, tolerance);
                     _client.ConvertToWebGL(tolerance, btnHtmlBodyColor.BackColor);
                     break;
+                case OperationsType.ConvertTo3DPdf:
+                    _client.ConvertTo3DPdf();
+                    break;
             }
 
             lstBoxTasks.Items.Add(taskItem);
@@ -1012,9 +1018,9 @@ namespace EyeshotWcfClientWinForms
                     _outputVisualizer = new OutputVisualizer();
                 _outputVisualizer.LoadFile(path);
             }
-            else if (extension.EndsWith("htm") || extension.EndsWith("html"))
+            else if (extension.EndsWith("htm") || extension.EndsWith("html") || extension.EndsWith("pdf"))
             {
-                // Open in default browser
+                // Open with default app
                 System.Diagnostics.Process.Start(path);
             }
             else

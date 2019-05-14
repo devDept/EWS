@@ -68,6 +68,13 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:enumeration>
+      <xs:enumeration value="ConvertTo3DPdf">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">110</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
       <xs:enumeration value="GetArea">
         <xs:annotation>
           <xs:appinfo>

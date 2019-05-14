@@ -6,3 +6,6 @@
 /src/bin/Debug
 /src/obj/Debug
 *.suo
+/src/.vs/*
+/src/EwsClientWinForms.v3.ncrunchsolution.user
+/src/EwsClientWinForms.sln.DotSettings.user

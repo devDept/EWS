@@ -35,6 +35,8 @@
       <xs:enumeration value="Mtl" />
       <xs:enumeration value="Step" />
       <xs:enumeration value="Stl" />
+      <xs:enumeration value="Pdf3D" />
+      <xs:enumeration value="Ifc" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="FileType" nillable="true" type="tns:FileType" />

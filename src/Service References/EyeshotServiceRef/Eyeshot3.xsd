@@ -7,6 +7,11 @@
   </xs:complexType>
   <xs:element name="ArrayOfviewType" nillable="true" type="tns:ArrayOfviewType" />
   <xs:simpleType name="viewType">
+    <xs:annotation>
+      <xs:appinfo>
+        <ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+      </xs:appinfo>
+    </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="Front" />
       <xs:enumeration value="Right" />

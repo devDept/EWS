@@ -16,6 +16,7 @@
       <xs:enumeration value="Acad2007" />
       <xs:enumeration value="Acad2010" />
       <xs:enumeration value="Acad2013" />
+      <xs:enumeration value="Acad2018" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="WriteAutodesk.versionType" nillable="true" type="tns:WriteAutodesk.versionType" />

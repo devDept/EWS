@@ -270,6 +270,12 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Stl = 11,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Pdf3D = 12,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Ifc = 13,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
@@ -310,6 +316,9 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
         ConvertToWebGL = 109,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
+        ConvertTo3DPdf = 110,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
         GetArea = 201,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -318,7 +327,7 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="viewType", Namespace="http://schemas.datacontract.org/2004/07/devDept.Eyeshot")]
-    public enum viewType : int {
+    public enum viewType : byte {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Front = 0,
@@ -474,6 +483,9 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Acad2013 = 7,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Acad2018 = 8,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
@@ -608,6 +620,14 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
         System.IAsyncResult BeginConvertToDxf(EyeshotWcfClientWinForms.EyeshotServiceRef.WriteAutodeskversionType[] versionTypes, bool aciColors, double tolerance, System.AsyncCallback callback, object asyncState);
         
         string EndConvertToDxf(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEyeshot/ConvertTo3DPdf", ReplyAction="http://tempuri.org/IEyeshot/ConvertTo3DPdfResponse")]
+        string ConvertTo3DPdf();
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IEyeshot/ConvertTo3DPdf", ReplyAction="http://tempuri.org/IEyeshot/ConvertTo3DPdfResponse")]
+        System.IAsyncResult BeginConvertTo3DPdf(System.AsyncCallback callback, object asyncState);
+        
+        string EndConvertTo3DPdf(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEyeshot/ConvertToObj", ReplyAction="http://tempuri.org/IEyeshot/ConvertToObjResponse")]
         string ConvertToObj(double tolerance);
@@ -990,6 +1010,25 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ConvertTo3DPdfCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public ConvertTo3DPdfCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class ConvertToObjCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -1266,6 +1305,12 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
         
         private System.Threading.SendOrPostCallback onConvertToDxfCompletedDelegate;
         
+        private BeginOperationDelegate onBeginConvertTo3DPdfDelegate;
+        
+        private EndOperationDelegate onEndConvertTo3DPdfDelegate;
+        
+        private System.Threading.SendOrPostCallback onConvertTo3DPdfCompletedDelegate;
+        
         private BeginOperationDelegate onBeginConvertToObjDelegate;
         
         private EndOperationDelegate onEndConvertToObjDelegate;
@@ -1373,6 +1418,8 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
         public event System.EventHandler<ConvertToDwgCompletedEventArgs> ConvertToDwgCompleted;
         
         public event System.EventHandler<ConvertToDxfCompletedEventArgs> ConvertToDxfCompleted;
+        
+        public event System.EventHandler<ConvertTo3DPdfCompletedEventArgs> ConvertTo3DPdfCompleted;
         
         public event System.EventHandler<ConvertToObjCompletedEventArgs> ConvertToObjCompleted;
         
@@ -2108,6 +2155,54 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
                         versionTypes,
                         aciColors,
                         tolerance}, this.onEndConvertToDxfDelegate, this.onConvertToDxfCompletedDelegate, userState);
+        }
+        
+        public string ConvertTo3DPdf() {
+            return base.Channel.ConvertTo3DPdf();
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginConvertTo3DPdf(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginConvertTo3DPdf(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public string EndConvertTo3DPdf(System.IAsyncResult result) {
+            return base.Channel.EndConvertTo3DPdf(result);
+        }
+        
+        private System.IAsyncResult OnBeginConvertTo3DPdf(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return this.BeginConvertTo3DPdf(callback, asyncState);
+        }
+        
+        private object[] OnEndConvertTo3DPdf(System.IAsyncResult result) {
+            string retVal = this.EndConvertTo3DPdf(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnConvertTo3DPdfCompleted(object state) {
+            if ((this.ConvertTo3DPdfCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.ConvertTo3DPdfCompleted(this, new ConvertTo3DPdfCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void ConvertTo3DPdfAsync() {
+            this.ConvertTo3DPdfAsync(null);
+        }
+        
+        public void ConvertTo3DPdfAsync(object userState) {
+            if ((this.onBeginConvertTo3DPdfDelegate == null)) {
+                this.onBeginConvertTo3DPdfDelegate = new BeginOperationDelegate(this.OnBeginConvertTo3DPdf);
+            }
+            if ((this.onEndConvertTo3DPdfDelegate == null)) {
+                this.onEndConvertTo3DPdfDelegate = new EndOperationDelegate(this.OnEndConvertTo3DPdf);
+            }
+            if ((this.onConvertTo3DPdfCompletedDelegate == null)) {
+                this.onConvertTo3DPdfCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnConvertTo3DPdfCompleted);
+            }
+            base.InvokeAsync(this.onBeginConvertTo3DPdfDelegate, null, this.onEndConvertTo3DPdfDelegate, this.onConvertTo3DPdfCompletedDelegate, userState);
         }
         
         public string ConvertToObj(double tolerance) {
