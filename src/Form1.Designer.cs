@@ -28,7 +28,7 @@
             this.btnConnect = new System.Windows.Forms.Button();
             this.treePicView = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.lblConnectionId = new System.Windows.Forms.Label();            
+            this.lblConnectionId = new System.Windows.Forms.Label();
             this.chkDeleteFiles = new System.Windows.Forms.CheckBox();
             this.numWidthImages = new System.Windows.Forms.NumericUpDown();
             this.lblWidth = new System.Windows.Forms.Label();
@@ -66,8 +66,6 @@
             this.grpInput = new System.Windows.Forms.GroupBox();
             this.grpReadingSettings = new System.Windows.Forms.GroupBox();
             this.btnUpdateSettings = new System.Windows.Forms.Button();
-            this.grpStepReading = new System.Windows.Forms.GroupBox();
-            this.chkIncludeWires = new System.Windows.Forms.CheckBox();
             this.grpAutodeskReading = new System.Windows.Forms.GroupBox();
             this.chkSkipProxies = new System.Windows.Forms.CheckBox();
             this.chkSkipHatches = new System.Windows.Forms.CheckBox();
@@ -110,7 +108,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numTolerance)).BeginInit();
             this.grpInput.SuspendLayout();
             this.grpReadingSettings.SuspendLayout();
-            this.grpStepReading.SuspendLayout();
             this.grpAutodeskReading.SuspendLayout();
             this.grpConversionSettings.SuspendLayout();
             this.grpOutput.SuspendLayout();
@@ -225,7 +222,7 @@
             this.lblConnectionId.Name = "lblConnectionId";
             this.lblConnectionId.Size = new System.Drawing.Size(150, 17);
             this.lblConnectionId.TabIndex = 17;
-            this.lblConnectionId.Text = "Id:";            
+            this.lblConnectionId.Text = "Id:";
             // 
             // chkDeleteFiles
             // 
@@ -418,7 +415,7 @@
             this.pgImages.Controls.Add(this.grpImagesSize);
             this.pgImages.Location = new System.Drawing.Point(4, 22);
             this.pgImages.Name = "pgImages";
-            this.pgImages.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.pgImages.Padding = new System.Windows.Forms.Padding(3);
             this.pgImages.Size = new System.Drawing.Size(347, 193);
             this.pgImages.TabIndex = 1;
             this.pgImages.Text = "Images";
@@ -515,7 +512,7 @@
             this.pgAutodesk.Controls.Add(this.chkAciColors);
             this.pgAutodesk.Location = new System.Drawing.Point(4, 22);
             this.pgAutodesk.Name = "pgAutodesk";
-            this.pgAutodesk.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.pgAutodesk.Padding = new System.Windows.Forms.Padding(3);
             this.pgAutodesk.Size = new System.Drawing.Size(347, 193);
             this.pgAutodesk.TabIndex = 2;
             this.pgAutodesk.Text = "DWG/DXF";
@@ -538,9 +535,9 @@
             this.pgWebGL.Controls.Add(this.lblHtmlBodyColor);
             this.pgWebGL.Controls.Add(this.btnHtmlBodyColor);
             this.pgWebGL.Location = new System.Drawing.Point(4, 22);
-            this.pgWebGL.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pgWebGL.Margin = new System.Windows.Forms.Padding(2);
             this.pgWebGL.Name = "pgWebGL";
-            this.pgWebGL.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pgWebGL.Padding = new System.Windows.Forms.Padding(2);
             this.pgWebGL.Size = new System.Drawing.Size(347, 193);
             this.pgWebGL.TabIndex = 3;
             this.pgWebGL.Text = "WebGL";
@@ -571,7 +568,7 @@
             this.pgGeneral.Controls.Add(this.chkDeleteFiles);
             this.pgGeneral.Location = new System.Drawing.Point(4, 22);
             this.pgGeneral.Name = "pgGeneral";
-            this.pgGeneral.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.pgGeneral.Padding = new System.Windows.Forms.Padding(3);
             this.pgGeneral.Size = new System.Drawing.Size(347, 193);
             this.pgGeneral.TabIndex = 0;
             this.pgGeneral.Text = "General";
@@ -608,7 +605,7 @@
             // grpInput
             // 
             this.grpInput.Controls.Add(this.btnInputFile);
-            this.grpInput.Controls.Add(this.txtInput);            
+            this.grpInput.Controls.Add(this.txtInput);
             this.grpInput.Controls.Add(this.txtExtraFiles);
             this.grpInput.Controls.Add(this.btnExtraFiles);
             this.grpInput.Location = new System.Drawing.Point(13, 45);
@@ -622,7 +619,6 @@
             // 
             this.grpReadingSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.grpReadingSettings.Controls.Add(this.btnUpdateSettings);
-            this.grpReadingSettings.Controls.Add(this.grpStepReading);
             this.grpReadingSettings.Controls.Add(this.grpAutodeskReading);
             this.grpReadingSettings.Location = new System.Drawing.Point(778, 45);
             this.grpReadingSettings.Name = "grpReadingSettings";
@@ -641,26 +637,6 @@
             this.btnUpdateSettings.Text = "Update settings";
             this.btnUpdateSettings.UseVisualStyleBackColor = true;
             this.btnUpdateSettings.Click += new System.EventHandler(this.btnUpdateSettings_Click);
-            // 
-            // grpStepReading
-            // 
-            this.grpStepReading.Controls.Add(this.chkIncludeWires);
-            this.grpStepReading.Location = new System.Drawing.Point(148, 21);
-            this.grpStepReading.Name = "grpStepReading";
-            this.grpStepReading.Size = new System.Drawing.Size(120, 69);
-            this.grpStepReading.TabIndex = 2;
-            this.grpStepReading.TabStop = false;
-            this.grpStepReading.Text = "STEP";
-            // 
-            // chkIncludeWires
-            // 
-            this.chkIncludeWires.AutoSize = true;
-            this.chkIncludeWires.Location = new System.Drawing.Point(6, 20);
-            this.chkIncludeWires.Name = "chkIncludeWires";
-            this.chkIncludeWires.Size = new System.Drawing.Size(88, 17);
-            this.chkIncludeWires.TabIndex = 0;
-            this.chkIncludeWires.Text = "Include wires";
-            this.chkIncludeWires.UseVisualStyleBackColor = true;
             // 
             // grpAutodeskReading
             // 
@@ -997,8 +973,6 @@
             this.grpInput.ResumeLayout(false);
             this.grpInput.PerformLayout();
             this.grpReadingSettings.ResumeLayout(false);
-            this.grpStepReading.ResumeLayout(false);
-            this.grpStepReading.PerformLayout();
             this.grpAutodeskReading.ResumeLayout(false);
             this.grpAutodeskReading.PerformLayout();
             this.grpConversionSettings.ResumeLayout(false);
@@ -1063,8 +1037,6 @@
         private System.Windows.Forms.GroupBox grpInput;
         private System.Windows.Forms.GroupBox grpOutput;
         private System.Windows.Forms.Button btnUpdateSettings;
-        private System.Windows.Forms.GroupBox grpStepReading;
-        private System.Windows.Forms.CheckBox chkIncludeWires;
         private System.Windows.Forms.GroupBox grpAutodeskReading;
         private System.Windows.Forms.CheckBox chkSkipProxies;
         private System.Windows.Forms.CheckBox chkSkipHatches;

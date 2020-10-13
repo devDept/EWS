@@ -24,7 +24,6 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="autodeskSkipHatches" type="xs:boolean" />
         <xs:element minOccurs="0" name="autodeskSkipProxies" type="xs:boolean" />
-        <xs:element minOccurs="0" name="stepIncludeWires" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

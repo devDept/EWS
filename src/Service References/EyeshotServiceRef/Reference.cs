@@ -518,10 +518,10 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
         int EndConnect(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEyeshot/UpdateReadingSettings", ReplyAction="http://tempuri.org/IEyeshot/UpdateReadingSettingsResponse")]
-        string UpdateReadingSettings(bool autodeskSkipHatches, bool autodeskSkipProxies, bool stepIncludeWires);
+        string UpdateReadingSettings(bool autodeskSkipHatches, bool autodeskSkipProxies);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IEyeshot/UpdateReadingSettings", ReplyAction="http://tempuri.org/IEyeshot/UpdateReadingSettingsResponse")]
-        System.IAsyncResult BeginUpdateReadingSettings(bool autodeskSkipHatches, bool autodeskSkipProxies, bool stepIncludeWires, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginUpdateReadingSettings(bool autodeskSkipHatches, bool autodeskSkipProxies, System.AsyncCallback callback, object asyncState);
         
         string EndUpdateReadingSettings(System.IAsyncResult result);
         
@@ -1491,13 +1491,13 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
                         accessKey}, this.onEndConnectDelegate, this.onConnectCompletedDelegate, userState);
         }
         
-        public string UpdateReadingSettings(bool autodeskSkipHatches, bool autodeskSkipProxies, bool stepIncludeWires) {
-            return base.Channel.UpdateReadingSettings(autodeskSkipHatches, autodeskSkipProxies, stepIncludeWires);
+        public string UpdateReadingSettings(bool autodeskSkipHatches, bool autodeskSkipProxies) {
+            return base.Channel.UpdateReadingSettings(autodeskSkipHatches, autodeskSkipProxies);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public System.IAsyncResult BeginUpdateReadingSettings(bool autodeskSkipHatches, bool autodeskSkipProxies, bool stepIncludeWires, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginUpdateReadingSettings(autodeskSkipHatches, autodeskSkipProxies, stepIncludeWires, callback, asyncState);
+        public System.IAsyncResult BeginUpdateReadingSettings(bool autodeskSkipHatches, bool autodeskSkipProxies, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginUpdateReadingSettings(autodeskSkipHatches, autodeskSkipProxies, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1508,8 +1508,7 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
         private System.IAsyncResult OnBeginUpdateReadingSettings(object[] inValues, System.AsyncCallback callback, object asyncState) {
             bool autodeskSkipHatches = ((bool)(inValues[0]));
             bool autodeskSkipProxies = ((bool)(inValues[1]));
-            bool stepIncludeWires = ((bool)(inValues[2]));
-            return this.BeginUpdateReadingSettings(autodeskSkipHatches, autodeskSkipProxies, stepIncludeWires, callback, asyncState);
+            return this.BeginUpdateReadingSettings(autodeskSkipHatches, autodeskSkipProxies, callback, asyncState);
         }
         
         private object[] OnEndUpdateReadingSettings(System.IAsyncResult result) {
@@ -1525,11 +1524,11 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
             }
         }
         
-        public void UpdateReadingSettingsAsync(bool autodeskSkipHatches, bool autodeskSkipProxies, bool stepIncludeWires) {
-            this.UpdateReadingSettingsAsync(autodeskSkipHatches, autodeskSkipProxies, stepIncludeWires, null);
+        public void UpdateReadingSettingsAsync(bool autodeskSkipHatches, bool autodeskSkipProxies) {
+            this.UpdateReadingSettingsAsync(autodeskSkipHatches, autodeskSkipProxies, null);
         }
         
-        public void UpdateReadingSettingsAsync(bool autodeskSkipHatches, bool autodeskSkipProxies, bool stepIncludeWires, object userState) {
+        public void UpdateReadingSettingsAsync(bool autodeskSkipHatches, bool autodeskSkipProxies, object userState) {
             if ((this.onBeginUpdateReadingSettingsDelegate == null)) {
                 this.onBeginUpdateReadingSettingsDelegate = new BeginOperationDelegate(this.OnBeginUpdateReadingSettings);
             }
@@ -1541,8 +1540,7 @@ namespace EyeshotWcfClientWinForms.EyeshotServiceRef {
             }
             base.InvokeAsync(this.onBeginUpdateReadingSettingsDelegate, new object[] {
                         autodeskSkipHatches,
-                        autodeskSkipProxies,
-                        stepIncludeWires}, this.onEndUpdateReadingSettingsDelegate, this.onUpdateReadingSettingsCompletedDelegate, userState);
+                        autodeskSkipProxies}, this.onEndUpdateReadingSettingsDelegate, this.onUpdateReadingSettingsCompletedDelegate, userState);
         }
         
         public string UploadData(EyeshotWcfClientWinForms.EyeshotServiceRef.UploadRequest uploadRequest) {

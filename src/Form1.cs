@@ -315,7 +315,6 @@ namespace EyeshotWcfClientWinForms
         private void InitReadingSettings()
         {
             chkSkipHatches.Checked = chkSkipProxies.Checked = true;
-            chkIncludeWires.Checked = false;
 
             if (_connectionId > 0)
                 UpdateReadingSettings();
@@ -643,7 +642,7 @@ namespace EyeshotWcfClientWinForms
         {
             btnUpdateSettings.Enabled = false;
             AppendToLog("Update reading settings started...", true);
-            _client.UpdateReadingSettingsAsync(chkSkipHatches.Checked, chkSkipProxies.Checked, chkIncludeWires.Checked);
+            _client.UpdateReadingSettingsAsync(chkSkipHatches.Checked, chkSkipProxies.Checked);
         }
 
         private void UpdateReadingSettingsCompleted(object sender, UpdateReadingSettingsCompletedEventArgs e)
